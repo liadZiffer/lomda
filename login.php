@@ -27,6 +27,9 @@ if (isset($_POST['login'])) {
             case 2:
                 $db->Redirect("subjects.php");
                 break;
+                case 4:
+                $db->Redirect("subjects.php");
+                break;
             default:
                 break;
         }

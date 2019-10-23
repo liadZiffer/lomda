@@ -7,6 +7,7 @@ if (!isset($_SESSION['iduserType'])) {
 }
 if (!isset($_SESSION['subject'])) {
     $_SESSION['subject'] = $_GET['subject'];
+    echo($_SESSION['iduserType']);
 }
 if ($_SESSION['subject'] != $_GET['subject']) {
     unset($_SESSION['subject']);
@@ -15,7 +16,12 @@ if ($_SESSION['subject'] != $_GET['subject']) {
 }
 if (!isset($_SESSION['gameQuashtion'])) {
     $_SESSION['gameQuashtion'] = array();
-    $result = $db->GetQuestionsBySubjectQuestionsIdAndQnty($_GET['subject'], 25);
+    if($_SESSION['iduserType'] == 2){
+        $result = $db->GetQuestionsBySubjectQuestionsIdAndQnty($_GET['subject'], 5);
+    }
+    else{
+        $result = $db->GetQuestionsBySubjectQuestionsIdAndQnty($_GET['subject'], 25);
+    }
     while ($row = $result->fetch_assoc()) {
         $_SESSION['gameQuashtion'][] = $row['idQuestion'];
     }
@@ -39,109 +45,15 @@ if (isset($_POST['submit'])) {
         }
     }
 }
-if (sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers'])) {
+//if its casual user redirect to different sum page info than register user
+if (sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) && $_SESSION['iduserType'] == 2) {
+    $db->Redirect("casualEndTest.php");
+}
+else if ( sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) ){
     $db->Redirect("score.php");
 }
 ?>
-<!DOCTYPE html>
-<html lang="he">
-    <head>
-        <title>שאלות</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Unicat project">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-        <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-        <link rel="stylesheet" type="text/css" href="styles/about.css">
-        <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
-        <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
-        <style>
-            p{
-                color: white;
-                text-align: right;
-            }
-
-        </style>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138749872-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-
-            gtag('config', 'UA-138749872-1');
-        </script>
-    </head>
-    <body>
-
-        <div class="super_container">
-
-            <!-- Header -->
-
-            <header class="header">
-
-
-                <!-- Header Content -->
-                <div class="header_container">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <div class="header_content d-flex flex-row align-items-center justify-content-start">
-                                    <div class="logo_container">
-                                        <a href="./index.php">
-                                            <div class="logo_text"><img src="templateImages/logo.png"></div>
-                                        </a>
-                                    </div>
-                                    <nav class="main_nav_contaner ml-auto">
-                                        <ul class="main_nav">
-                                            <li ><a href="subjects.php">בית</a></li>
-                                            <?php
-                                            for ($index = 0; $index < sizeof($_SESSION['gameQuashtion']); $index++) {
-                                                ?>
-                                                <li><a  
-                                                    <?php
-                                                    if (isset($_SESSION['Answers'][$_SESSION['gameQuashtion'][$index]])) {
-                                                        if ($_SESSION['Answers'][$_SESSION['gameQuashtion'][$index]]) {
-                                                            ?>
-                                                                style="color: green"
-                                                                <?php
-                                                            } else {
-                                                                ?>
-                                                                style="color: red"
-                                                            <?php }
-                                                            ?>
-
-                                                        <?php } ?>
-
-                                                        href="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_SESSION['gameQuashtion'][$index] ?>"><?php echo $index + 1 ?></a></li>    
-                                                <?php } ?>
-                                            <li><a href="login.php"> התנתק</a></li>
-                                        </ul>
-
-
-                                        <!-- Hamburger -->
-
-
-                                        <div class="hamburger menu_mm">
-                                            <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-                                        </div>
-                                    </nav>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </header>
+<?php include 'header.php';?>
 
             <!-- Menu -->
 

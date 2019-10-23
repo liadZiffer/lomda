@@ -44,13 +44,16 @@ if (!isset($_SESSION['iduserType'])) {
                     <div class = "row">
                         <div class = "col">
 
-                            <div class = "col-sm-7 text-left "dir = "rtl">
+                            <div class = "col-sm-12 text-left "dir = "rtl">
                                 <h3 style = "font-family: 'Heebo', sans-serif;"><?php echo $corret
                         ?>/<?php echo sizeof($_SESSION['gameQuashtion']) ?> נכונות</h3>
                                 <h3 style="font-family: 'Heebo', sans-serif;"><?php echo $wrong ?>/<?php echo sizeof($_SESSION['gameQuashtion']) ?> שגויות</h3>
 
-                                <p style="font-size: 40px;font-family: 'Heebo', sans-serif;color: black;">ציון:<?php echo round(100 / sizeof($_SESSION['Answers']) * $corret); ?></p>
-                                <a style="float: right" href="subjects.php">חזרה לרשימת נושאים</a>
+                                <div class="total-info">
+                                    <p>ציון:<?php echo round(100 / sizeof($_SESSION['Answers']) * $corret); ?></p>
+                                    <p>  רוצה להמשיך למבחן המלא שלנו הכולל 25 שאלות ולא דוגמא של 5 בלבד?  <a href="register.php">לרישום מהיר בחינם</a> !</p>                                    <a style="float: right" href="subjects.php">חזרה לרשימת נושאים</a>
+                                </div>
+                               
 
 
 
