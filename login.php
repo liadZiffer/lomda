@@ -7,7 +7,7 @@ if (isset($_GET['iduser']) && $_GET['iduser'] == 0) {
     session_start();
     $_SESSION['iduser'] = 0;
     $_SESSION['idcity'] = 0;
-    $_SESSION['iduserType'] = 2;
+    $_SESSION['iduserType'] = 2;// 2 its mean admin
     $db->Redirect("subjects.php");
 }
 
@@ -24,11 +24,11 @@ if (isset($_POST['login'])) {
             case 1:
                 $db->Redirect("./admin/index.php");
                 break;
-            case 2:
+            case 2://casual user login
                 $db->Redirect("subjects.php");
                 break;
-                case 4:
-                $db->Redirect("subjects.php");
+                case 4://advertiser login
+                $db->Redirect("advertiserMainRoute.php");
                 break;
             default:
                 break;

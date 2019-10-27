@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="he">
     <head>
-        <title>דף פתיחה</title>
+
+  <title>דף פתיחה</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="Unicat project">
@@ -14,16 +15,8 @@
         <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
         <link rel="stylesheet" type="text/css" href="styles/about.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
-        <link rel="stylesheet" type="text/css" href="styles/about_responsive.css">
+        <link rel="stylesheet" type="text/css" href="css/app.scss">
         <link href="https://fonts.googleapis.com/css?family=Heebo" rel="stylesheet">
-        <style>
-            p{
-                color: white;
-                text-align: right;
-                font-family: 'Heebo', sans-serif;
-            }
-
-        </style>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138749872-1"></script>
         <script>
@@ -35,15 +28,24 @@
 
             gtag('config', 'UA-138749872-1');
         </script>
-    </head>
-    <body>
 
-<div class="super_container">
+</head>
+    <body>
+    <nav class="navbar navbar-default navbar-static-top" id="mainNav">
+    <div class="container">
+    <div class="logo_container">
+                                <a href="index.php">
+                                    <div class="logo_text"><img src="templateImages/logo.png"></div>
+                                </a>
+                            </div>
+    </div>
+  </nav>
+
+
 
     <!-- Header -->
 
-    <header class="header">
-        <!-- Top Bar -->
+    <!-- <header class="header">
         <div class="top_bar">
             <div class="top_bar_container">
                 <div class="container">
@@ -55,7 +57,6 @@
                 </div>
             </div>				
         </div>
-        <!-- Header Content -->
         <div class="header_container">
             <div class="container">
                 <div class="row">
@@ -73,4 +74,4 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->

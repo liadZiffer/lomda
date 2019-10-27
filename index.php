@@ -1,7 +1,7 @@
 <?php include 'header.php';?>
 
 
-            <div class="counter">
+            <div class="counter" id="Home-page">
                 <div class="counter_background" style="background-image:url(templateImages/counter_background.jpg)"></div>
                 <div class="container">
                     <div class="row">

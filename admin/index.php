@@ -42,7 +42,7 @@ if (!isset($_SESSION['iduser']) || $_SESSION['iduserType'] != 1) {
                             </div>
                         </div>
                     </div>
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>><br><br><br><br><br><br>><br><br><br><br><br><br><br>
+                  
                 </div>
 
 
