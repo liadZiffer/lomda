@@ -1,3 +1,4 @@
+$(document).ready(function($) {//start
 /**
  * APP JS
  */
@@ -31,14 +32,14 @@
   /**
    * advertiser form validation
    */
-  var $form = $("form"),
+  var $form = $("#advform"),
   $successMsg = $(".alert");
 $.validator.addMethod("letters", function(value, element) {
   return this.optional(element) || value == value.match(/^[a-zA-Z\s]*$/);
 });
 $form.validate({
   rules: {
-    name: {
+    firstName: {
       required: true,
       minlength: 2,
       letters: true
@@ -47,7 +48,7 @@ $form.validate({
       required: true,
       minlength: 2
     },
-    surname: {
+    lastName: {
         required: true,
         minlength: 2,
         letters: true
@@ -65,14 +66,14 @@ $form.validate({
         phone:true
       },
       image: {
-        required: true
+        required: false
       }
   },
 
   messages: {
-    name: "יש למלא שם פרטי",
+    firstName: "יש למלא שם פרטי",
     businessName: "יש למלא שם חברה",
-    surname: "יש למלא שם משפחה",
+    lastName: "יש למלא שם משפחה",
     website: "יש למלא כתובת דף הבית",
     phone: "יש למלא טלפון פרטי/ חברה",
     businessEmail: "יש למלא כתובת אימייל",
@@ -82,4 +83,82 @@ $form.validate({
     $successMsg.show();
   }
 });
+
+$('#advertiser-main').keydown(function(e){
+    if (e.keyCode == 65 && e.ctrlKey) {
+        e.target.select()
+    }
+
+})
+/**
+ * ajax call - advertiser form update
+ */
+    //login
+  //   $(function() {
+  //     $('#advForm').on('submit', function(e) {
+  //         e.preventDefault();
+  //         valid = true;//default login flag
+  //         if ($('#businessName').val() == '') {
+  //           message = "יש למלא שם חבריש למלא שם חברה";              valid = false;
+  //         }
+  //         else if ($('#firstname').val() == '' && valid) {//if password false and username true
+  //             message = "יש למלא שם משפחה";
+  //             valid = false;
+  //         }
+  //         else if ($('#lastname').val() == '' && valid) {//if password false and username true
+  //           message = "Please enter a password";
+  //           valid = false;
+  //       }
+  //       else if ($('#website').val() == '' && valid) {//if password false and username true
+  //         message = "יש למלא כתובת אתר חברה";
+  //         valid = false;
+  //     }
+  //     else if ($('#phone').val() == '' && valid) {//if password false and username true
+  //       message = "נא למלא מספר טלפון";
+  //       valid = false;
+  //   }
+  //   else if ($('#businessEmail').val() == '' && valid) {//if password false and username true
+  //     message = "נא למלא כתובת מייל";
+  //     valid = false;
+  // }
+  //         if (!valid) {//if valid is false
+  //             $('.show_error').css("text-align", "center");
+  //             $('.show_error').css("color", "#F14141");
+  //             $('.show_error').css("font-weight", "bold");
+  //             $('.show_error').css("padding-left", "3%");
+  //             $('.show_error').html(message);
+  //             console.log("valid is..."+valid);
+  //             return valid;
+  //         }
+  //         $.ajax({
+  //             type: 'post',
+  //             url: 'http://localhost/lomda/advertiser-insert.php',
+  //             data: $('#advForm').serialize(),
+  //             success: function(data) {
+  //              console.log(data);
+  //                 // var _data = data;
+  //                 // alert (_data);
+  //             }
+  //         });
+  //     });
+  // });
+
+
+
+
+
+
+
+
+
+
+
+}); //end document ready
+
+
+
+
+
+
+
 

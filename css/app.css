@@ -83,7 +83,10 @@ body
 }
 
 
-/*********advertiserMainRoute.php****************/
+/*********advertiserMainRoute.php + advertiser.php****************/
 .link-for-adv-info{
   margin-top: 25px;
+}
+.error{
+  color:red;
 }

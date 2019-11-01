@@ -16,6 +16,7 @@ class dbconnect {
     private $conn;
 
     public function __construct() {
+        //$this->conn = new mysqli("127.0.0.1", "c10wave7_root", "q12w23e3", "c10wave7_lomda");
         $this->conn = new mysqli("127.0.0.1", "root", "", "lomda");
         $this->conn->set_charset("utf8");
         if (!$this->conn) {
@@ -126,6 +127,44 @@ class dbconnect {
         $this->conn->query("INSERT INTO `advertisements` (`iduser`, `idcity`, `idSubjectQuestion`, `phone`, `website`, `image`, `slogen`, `businessName`, `shortSlogen`, `startdate`, `enddate`, `idapproveType`) VALUES ('$iduser', '$idcity', '$idSubjectQuestion', '$phone', '$website', '$image', '$slogen', '$businessName', '$shortSlogen', '$startdate', '$enddate', '$approveType')");
         return $this->conn->insert_id;
     }
+    public function InsertAdvertismentInfo($iduser,$businessName, $firstName, $lastName, $website, $phone,$businessEmail) {
+        $businessName = mysqli_real_escape_string($this->conn, $businessName);
+        $firstName = mysqli_real_escape_string($this->conn, $firstName);
+        $lastName = mysqli_real_escape_string($this->conn, $lastName);
+        $website = mysqli_real_escape_string($this->conn, $website);
+        $phone = mysqli_real_escape_string($this->conn, $phone);
+        $businessEmail = mysqli_real_escape_string($this->conn, $businessEmail);
+        $sql = "INSERT INTO advertisements (iduser,businessName, firstName, lastName, website, phone, businessEmail) VALUES ('$iduser', '$businessName', '$firstName', '$lastName', '$website', '$phone', '$businessEmail')";
+        //echo $sql;
+        $this->conn->query($sql);
+        return $this->conn->insert_id;
+    }
+    public function updateAdvertismentInfo($idAdvertisement,$businessName, $firstName, $lastName, $website, $phone,$businessEmail) {
+        $businessName = mysqli_real_escape_string($this->conn, $businessName);
+        $firstName = mysqli_real_escape_string($this->conn, $firstName);
+        $lastName = mysqli_real_escape_string($this->conn, $lastName);
+        $website = mysqli_real_escape_string($this->conn, $website);
+        $phone = mysqli_real_escape_string($this->conn, $phone);
+        $businessEmail = mysqli_real_escape_string($this->conn, $businessEmail);
+        $sql = "UPDATE `advertisements` SET  `firstName` = '$firstName', `lastName` = '$lastName', `phone` = '$phone', `website` = '$website', `businessName` = '$businessName' WHERE `advertisements`.`idAdvertisement` = $idAdvertisement";
+        //update return true/false
+        return $this->conn->query($sql);
+    }
+    public function isAdExixt($iduser){
+        $sql = "SELECT * FROM advertisements where `iduser` = $iduser";
+        //echo $sql;
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+    public function getAdExixst($iduser){
+        $sql = "SELECT * FROM advertisements where `iduser` = $iduser";
+        $result = $this->conn->query($sql);
+        return $result->fetch_assoc();//return array of the result
+    }
+    
 
     public function GetAllusers() {
         return $this->conn->query("SELECT * FROM users,cities,usertype where users.idcity=cities.idcity and users.iduserType=usertype.iduserType");

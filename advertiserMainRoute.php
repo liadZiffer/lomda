@@ -5,6 +5,7 @@ $db = new dbconnect();
 if (!isset($_SESSION['iduser']) || $_SESSION['iduserType'] != 4) {
     $db->Redirect("../login.php");
 }
+
 ?>
 <?php include 'header.php'; ?>
 
@@ -12,7 +13,6 @@ if (!isset($_SESSION['iduser']) || $_SESSION['iduserType'] != 4) {
 <div class="row">
     <div class="container">
     <div  class="courses">
-      <div  class="section_background parallax-window" data-parallax="scroll" data-image-src="../templateImages//courses_background.jpg" data-speed="0.8"></div>
       <div  class="container">
           <div class="row">
               <div class="col">
@@ -28,7 +28,15 @@ if (!isset($_SESSION['iduser']) || $_SESSION['iduserType'] != 4) {
             </div>
         <div class="text-center">
             <h1>תפריט ראשי - דף מפרסם</h1>
-            
+        <?php 
+        if(isset($_SESSION['message'])){ ?>
+            <h2><?php echo $_SESSION['message']; ?></h2> 
+       <?php
+            unset($_SESSION['message']);
+    }
+        
+        
+        ?>    
         </div>
         <div class="link-for-adv-info text-center">
             <a href="advertiser.php?fullname=<?php echo $_SESSION['fullname'] ?>">ערוך פרטי פרסומת</a>
