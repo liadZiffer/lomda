@@ -65,8 +65,8 @@ $form.validate({
         required: true,
         phone:true
       },
-      image: {
-        required: false
+      file: {
+        required: true
       }
   },
 
@@ -77,7 +77,7 @@ $form.validate({
     website: "יש למלא כתובת דף הבית",
     phone: "יש למלא טלפון פרטי/ חברה",
     businessEmail: "יש למלא כתובת אימייל",
-    image: "יש לעלות תמונה של פרסומת"
+    file: "יש לעלות תמונה של פרסומת"
   },
   submitHandler: function() {
     $successMsg.show();

@@ -11,8 +11,35 @@ if (!isset($_SESSION['iduser']) || $_SESSION['iduserType'] != 4) {
     $db->Redirect("../login.php");
 }
 $error = "";
-
+//handle upload file to server
 if (isset($_POST['advertiser'])) {
+  $fileName = $_FILES['file']['name'];
+$size = $_FILES['file']['size'];
+$tmp_name = $_FILES['file']['tmp_name'];
+$max_size = 100000;
+$targetDir = "images/";
+$targetFilePath = $targetDir . $fileName;
+$extension = substr($fileName, strpos($fileName, '.') + 1);
+$fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+$allowTypes = array('jpg','png','jpeg','gif','pdf');
+if(isset($fileName) && !empty($fileName)){
+	if(in_array($fileType, $allowTypes)){
+    
+		if(move_uploaded_file($tmp_name, $targetDir.$fileName)){
+
+      $smsg = "Uploaded Successfully";
+
+		}else{
+			$fmsg = "Failed to Upload File";
+		}
+	}else{
+		$fmsg = "File size should be 100 KiloBytes & Only JPEG File";
+	}
+}else{
+	$fmsg = "Please Select a File";
+}
+//end handle upload file to server
+
     $phone = str_replace("-", "", $_POST['phone']);
     if (!is_numeric($phone)) {
         $error .= "מספר טלפון לא חוקי<br>";
@@ -21,11 +48,11 @@ if (isset($_POST['advertiser'])) {
     if (empty($error)) {
       if($db->isAdExixt($_SESSION['iduser']))
       {
-        $result = $db->updateAdvertismentInfo($_GET['idAdvertisement'],$_POST['businessName'], $_POST['firstName'], $_POST['lastName'], $_POST['website'], $phone, $_POST['businessEmail']);
+        $result = $db->updateAdvertismentInfo($_GET['idAdvertisement'],$_POST['businessName'], $_POST['firstName'], $_POST['lastName'], $_POST['website'], $phone, $_POST['businessEmail'],$fileName);
       }
       else
       {
-        $result = $db->InsertAdvertismentInfo($idUser,$_POST['businessName'], $_POST['firstName'], $_POST['lastName'], $_POST['website'], $phone, $_POST['businessEmail']);
+        $result = $db->InsertAdvertismentInfo($idUser,$_POST['businessName'], $_POST['firstName'], $_POST['lastName'], $_POST['website'], $phone, $_POST['businessEmail'],$fileName);
       }
         
         if ($result < 1) {
@@ -71,7 +98,7 @@ if (isset($_POST['advertiser'])) {
           $result = $db->getAdExixst($_SESSION['iduser']);
         }
       ?>
-    <form role="form" id="advform"  action="advertiser.php<?php if(isset($result)){echo "?idAdvertisement=".$result['idAdvertisement'];} ?>" method="POST" class="validate">
+    <form role="form" id="advform"  action="advertiser.php<?php if(isset($result)){echo "?idAdvertisement=".$result['idAdvertisement'];} ?>" method="POST" enctype="multipart/form-data" class="validate">
       
     <p class="show_error"></p>
     <div class="row">
@@ -118,9 +145,9 @@ if (isset($_POST['advertiser'])) {
         <div class="col col-lg-4 col-md-4 col-sm-4">
   <div class="imgUp">
     <div class="imagePreview"></div>
-<label class="btn btn-primary">
-										    			העלאת תמונת פרסומת<input type="file" class="uploadFile img" name="image" style="width: 0px;height: 0px;overflow: hidden;">
-				</label>
+<label for="InputFile" class="btn btn-primary">בחר פרסומת להעלאה</label>
+<input type="file" class="uploadFile img" name="file" id="InputFile" style="width: 0px;height: 0px;overflow: hidden;">
+	  
   </div>
     </div>
     </div>

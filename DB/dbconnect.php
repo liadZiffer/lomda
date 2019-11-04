@@ -127,26 +127,27 @@ class dbconnect {
         $this->conn->query("INSERT INTO `advertisements` (`iduser`, `idcity`, `idSubjectQuestion`, `phone`, `website`, `image`, `slogen`, `businessName`, `shortSlogen`, `startdate`, `enddate`, `idapproveType`) VALUES ('$iduser', '$idcity', '$idSubjectQuestion', '$phone', '$website', '$image', '$slogen', '$businessName', '$shortSlogen', '$startdate', '$enddate', '$approveType')");
         return $this->conn->insert_id;
     }
-    public function InsertAdvertismentInfo($iduser,$businessName, $firstName, $lastName, $website, $phone,$businessEmail) {
+    public function InsertAdvertismentInfo($iduser,$businessName, $firstName, $lastName, $website, $phone,$businessEmail,$QuestionImage) {
         $businessName = mysqli_real_escape_string($this->conn, $businessName);
         $firstName = mysqli_real_escape_string($this->conn, $firstName);
         $lastName = mysqli_real_escape_string($this->conn, $lastName);
         $website = mysqli_real_escape_string($this->conn, $website);
         $phone = mysqli_real_escape_string($this->conn, $phone);
         $businessEmail = mysqli_real_escape_string($this->conn, $businessEmail);
-        $sql = "INSERT INTO advertisements (iduser,businessName, firstName, lastName, website, phone, businessEmail) VALUES ('$iduser', '$businessName', '$firstName', '$lastName', '$website', '$phone', '$businessEmail')";
+        //$uploaded_on = new Datetime();
+        $sql = "INSERT INTO advertisements (iduser,businessName, firstName, lastName, website, phone, businessEmail,file_name) VALUES ('$iduser', '$businessName', '$firstName', '$lastName', '$website', '$phone', '$businessEmail','$QuestionImage')";
         //echo $sql;
         $this->conn->query($sql);
         return $this->conn->insert_id;
     }
-    public function updateAdvertismentInfo($idAdvertisement,$businessName, $firstName, $lastName, $website, $phone,$businessEmail) {
+    public function updateAdvertismentInfo($idAdvertisement,$businessName, $firstName, $lastName, $website, $phone,$businessEmail,$QuestionImage) {
         $businessName = mysqli_real_escape_string($this->conn, $businessName);
         $firstName = mysqli_real_escape_string($this->conn, $firstName);
         $lastName = mysqli_real_escape_string($this->conn, $lastName);
         $website = mysqli_real_escape_string($this->conn, $website);
         $phone = mysqli_real_escape_string($this->conn, $phone);
         $businessEmail = mysqli_real_escape_string($this->conn, $businessEmail);
-        $sql = "UPDATE `advertisements` SET  `firstName` = '$firstName', `lastName` = '$lastName', `phone` = '$phone', `website` = '$website', `businessName` = '$businessName' WHERE `advertisements`.`idAdvertisement` = $idAdvertisement";
+        $sql = "UPDATE `advertisements` SET  `firstName` = '$firstName', `lastName` = '$lastName', `phone` = '$phone', `website` = '$website', `businessName` = '$businessName', `file_name` = '$QuestionImage' WHERE `advertisements`.`idAdvertisement` = $idAdvertisement";
         //update return true/false
         return $this->conn->query($sql);
     }
