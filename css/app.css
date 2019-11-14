@@ -37,7 +37,7 @@ body
     width: 100%;
     height: 180px;
     background-position: center center;
-  background:url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+  /* background:url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg); */
   background-color:#fff;
     background-size: cover;
   background-repeat:no-repeat;
@@ -81,6 +81,9 @@ body
   cursor:pointer;
   font-size:15px;
 }
+#InputFile{
+  width: 0px;height: 0px;overflow: hidden;
+}
 
 
 /*********advertiserMainRoute.php + advertiser.php****************/
@@ -89,4 +92,9 @@ body
 }
 .error{
   color:red;
+}
+
+/*********advertising.php****************/
+#advertising-main select {
+  width: 100%;
 }

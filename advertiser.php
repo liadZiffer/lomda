@@ -10,34 +10,61 @@ if (!isset($_SESSION['iduser']) || $_SESSION['iduserType'] != 4) {
   //var_dump( $_SESSION['iduser']);
     $db->Redirect("../login.php");
 }
+
+
 $error = "";
 //handle upload file to server
 if (isset($_POST['advertiser'])) {
-  $fileName = $_FILES['file']['name'];
-$size = $_FILES['file']['size'];
-$tmp_name = $_FILES['file']['tmp_name'];
-$max_size = 100000;
-$targetDir = "images/";
-$targetFilePath = $targetDir . $fileName;
-$extension = substr($fileName, strpos($fileName, '.') + 1);
-$fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-$allowTypes = array('jpg','png','jpeg','gif','pdf');
-if(isset($fileName) && !empty($fileName)){
-	if(in_array($fileType, $allowTypes)){
+  $adDetails=$db->GetAdvertismentByUserId($_SESSION['iduser']);
+  
+  if(empty($adDetails['file_name']) ||
+   (!empty($_FILES['file']['name']) &&
+     substr($adDetails['file_name'],
+     strpos($adDetails['file_name'],'/')+1,
+     strlen($adDetails['file_name'])-strpos($adDetails['file_name'],'/'))!=$_FILES['file']['name']))
+    {
+    $fileName = $_FILES['file']['name'];
+    $size = $_FILES['file']['size'];
+    $tmp_name = $_FILES['file']['tmp_name'];
+    $max_size = 100000;
+    $targetDir = "images/";
+    $fileName = $targetDir . $fileName;
+    $extension = substr($fileName, strpos($fileName, '.') + 1);
+    $fileType = pathinfo($fileName,PATHINFO_EXTENSION);
+    $allowTypes = array('jpg','png','jpeg','gif','pdf');
+    if(isset($fileName) && !empty($fileName)){
+      if(in_array($fileType, $allowTypes)){
+        if(file_exists($fileName))
+        {
+          unlink($fileName);
+        }
+        if(move_uploaded_file($tmp_name, $fileName)){
+          
+          $tempName=substr($fileName,0,strpos($fileName,'/')+1)."image".date("dmYHis").rand(1,1000000).substr($fileName,
+          strpos($fileName,'.'),
+          strlen($fileName)-strpos($fileName,'.'));
+          rename($fileName,$tempName);
+          $fileName=$tempName;
+          $smsg = "Uploaded Successfully";
     
-		if(move_uploaded_file($tmp_name, $targetDir.$fileName)){
+        }else{
+          $fmsg = "Failed to Upload File";
+        }
+      }else{
+        $fmsg = "File size should be 100 KiloBytes & Only JPEG File";
+      }
+    }else{
+      $fmsg = "Please Select a File";
+    }
+  }
+  else
+  {
 
-      $smsg = "Uploaded Successfully";
+    $fileName=$adDetails['file_name'];
+  }
 
-		}else{
-			$fmsg = "Failed to Upload File";
-		}
-	}else{
-		$fmsg = "File size should be 100 KiloBytes & Only JPEG File";
-	}
-}else{
-	$fmsg = "Please Select a File";
-}
+
+
 //end handle upload file to server
 
     $phone = str_replace("-", "", $_POST['phone']);
@@ -85,10 +112,7 @@ if(isset($fileName) && !empty($fileName)){
                   </div>
               </div>
           </div>
-        
       </div>
-
-
             </div>
         <div class="text-center">
             <h1>דף מפרסם עצמאית</h1>
@@ -96,6 +120,7 @@ if(isset($fileName) && !empty($fileName)){
         <?php 
         if($db->isAdExixt($_SESSION['iduser'])){
           $result = $db->getAdExixst($_SESSION['iduser']);
+          $getAdImg = $db->getAdImg($_SESSION['iduser']);
         }
       ?>
     <form role="form" id="advform"  action="advertiser.php<?php if(isset($result)){echo "?idAdvertisement=".$result['idAdvertisement'];} ?>" method="POST" enctype="multipart/form-data" class="validate">
@@ -143,10 +168,10 @@ if(isset($fileName) && !empty($fileName)){
         </div>
         </div><!--end business info-->
         <div class="col col-lg-4 col-md-4 col-sm-4">
-  <div class="imgUp">
-    <div class="imagePreview"></div>
+  <div class="imgUp form-group">
+    <div class="imagePreview" style="background:url('<?php if(isset($getAdImg)){echo $getAdImg['file_name'];} ?>')!important;background-repeat: no-repeat;background-position: center center;border: 1px solid;width: 100%;height: 28em;"></div>
 <label for="InputFile" class="btn btn-primary">בחר פרסומת להעלאה</label>
-<input type="file" class="uploadFile img" name="file" id="InputFile" style="width: 0px;height: 0px;overflow: hidden;">
+<input type="file" value="<?php if(isset($result)){echo $result['file_name'];} ?>" class="uploadFile img" name="file" id="InputFile" >
 	  
   </div>
     </div>

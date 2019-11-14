@@ -39,7 +39,10 @@ if (!isset($_SESSION['iduser']) || $_SESSION['iduserType'] != 4) {
         ?>    
         </div>
         <div class="link-for-adv-info text-center">
-            <a href="advertiser.php?fullname=<?php echo $_SESSION['fullname'] ?>">ערוך פרטי פרסומת</a>
+            <a href="advertiser.php">עריכת דף מפרסם</a>
+        </div>
+        <div class="link-for-adv-info text-center">
+            <a href="advertising.php">הוספה ועריכת פרסומות</a>
         </div>
 
     </div>

@@ -212,6 +212,7 @@ else if ( sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) ){
                         </div>
                     </div>
                 </div>
+                <?php include 'advBottomBanner.php';?>
             </div>
 
 

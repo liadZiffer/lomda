@@ -90,6 +90,66 @@ $('#advertiser-main').keydown(function(e){
     }
 
 })
+  /**
+   * advertiser form validation
+   */
+  var $form = $("#advertisingForm"),
+  $successMsg = $(".alert");
+$.validator.addMethod("letters", function(value, element) {
+  return this.optional(element) || value == value.match(/^[a-zA-Z\s]*$/);
+});
+$form.validate({
+  rules: {
+    advertisingName: {
+      required: true,
+      minlength: 5,
+      letters: true
+    },
+    idcity: {
+      required: true
+    },
+    slogen: {
+        required: true,
+        minlength: 5,
+        letters: true
+    },
+    shortSlogen: {
+        required: true,
+        minlength: 5,
+        email:true
+      },
+      idSubjectQuestion: {
+        required: true,
+        option:true
+      },
+      startDate: {
+        required: true
+      },
+      endDate: {
+        required: true
+      }
+  },
+
+  messages: {
+    advertisingName: "יש למלא שם פרסומת",
+    idcity: "יש לבחור ערים/ או עיר",
+    slogen: "נא לבחור סלוגן לפרסומת",
+    shortSlogen: "נא לבחור סלוגן קצר לפרסומת",
+    idSubjectQuestion: "בחרו נושא שבו תופיע הפסרומת",
+    startDate: "יש לציין תאריך התחלה",
+    endDate: "יש לציין תאריך סיום "
+  },
+  submitHandler: function() {
+    $successMsg.show();
+  }
+});
+
+$('#advertisingForm').keydown(function(e){
+    if (e.keyCode == 65 && e.ctrlKey) {
+        e.target.select()
+    }
+
+})
 /**
  * ajax call - advertiser form update
  */

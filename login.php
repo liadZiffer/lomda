@@ -21,6 +21,10 @@ if (isset($_POST['login'])) {
         $_SESSION['fullname'] = $result['firstname'] . " " . $result['lastname'];
         $_SESSION['iduserType'] = $result['iduserType'];
         $_SESSION['idcity'] = $result['idcity'];
+        $_SESSION['email'] = $result['email'];
+        // var_dump($_SESSION['email']);
+        // exit;
+        //$_SESSION['idAdvertisement']= $result['idAdvertisement'];
         switch ($result['iduserType']) {
             case 1:
                 $db->Redirect("./admin/index.php");

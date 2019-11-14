@@ -73,6 +73,14 @@ class dbconnect {
         $result = $this->conn->query("SELECT * FROM users where email like '%$email%'");
         return $result->fetch_assoc();
     }
+    //check if user add details on advertising and its in the advertisments table
+    public function CheckAdvExixtForUser($email) {
+        //var_dump($email);
+        $email = mysqli_real_escape_string($this->conn, $email);
+        $result = $this->conn->query("SELECT * from users as u INNER JOIN advertisements as a ON CONCAT(u.iduser, a.iduser)=CONCAT(a.iduser,u.iduser) where u.email LIKE '%$email%'");
+        return $result->fetch_assoc();
+    }
+
 
     public function InsertUser($email, $password, $firstname, $lastname, $idcity, $phone, $birthdate, $iduserType) {
         $email = mysqli_real_escape_string($this->conn, $email);
@@ -147,7 +155,19 @@ class dbconnect {
         $website = mysqli_real_escape_string($this->conn, $website);
         $phone = mysqli_real_escape_string($this->conn, $phone);
         $businessEmail = mysqli_real_escape_string($this->conn, $businessEmail);
-        $sql = "UPDATE `advertisements` SET  `firstName` = '$firstName', `lastName` = '$lastName', `phone` = '$phone', `website` = '$website', `businessName` = '$businessName', `file_name` = '$QuestionImage' WHERE `advertisements`.`idAdvertisement` = $idAdvertisement";
+        var_dump($QuestionImage);
+        $sql = "UPDATE `advertisements` SET  `firstName` = '$firstName', `lastName` = '$lastName', `phone` = '$phone', `website` = '$website', `businessName` = '$businessName', `file_name` = '$QuestionImage', `businessEmail` = '$businessEmail' WHERE `advertisements`.`idAdvertisement` = $idAdvertisement";
+        //update return true/false
+        return $this->conn->query($sql);
+    }
+    public function updateAdvertisment($idAdvertisement,$advertisingName,$idSubjectQuestion, $idcity, $slogen, $shortSlogen, $startdate,$enddate) {
+        $advertisingName = mysqli_real_escape_string($this->conn, $advertisingName);
+        $idcity = mysqli_real_escape_string($this->conn, $idcity);
+        $slogen = mysqli_real_escape_string($this->conn, $slogen);
+        $shortSlogen = mysqli_real_escape_string($this->conn, $shortSlogen);
+        // $startdate = mysqli_real_escape_string($this->conn, $startdate);
+        // $enddate = mysqli_real_escape_string($this->conn, $enddate);
+        $sql = "UPDATE `advertisements` SET `idSubjectQuestion` = '$idSubjectQuestion', `idcity` = '$idcity', `slogen` = '$slogen', `startdate` = '$startdate', `shortSlogen` = '$shortSlogen', `advertisingName` = '$advertisingName',`enddate` = '$enddate' WHERE `advertisements`.`idAdvertisement` = $idAdvertisement";
         //update return true/false
         return $this->conn->query($sql);
     }
@@ -162,6 +182,11 @@ class dbconnect {
     }
     public function getAdExixst($iduser){
         $sql = "SELECT * FROM advertisements where `iduser` = $iduser";
+        $result = $this->conn->query($sql);
+        return $result->fetch_assoc();//return array of the result
+    }
+    public function getAdImg($iduser){
+        $sql = "SELECT file_name FROM advertisements where `iduser` = $iduser";
         $result = $this->conn->query($sql);
         return $result->fetch_assoc();//return array of the result
     }
@@ -222,6 +247,10 @@ class dbconnect {
     }
     public function GetAllAdvertisementsLimit($limit) {
         return $this->conn->query("SELECT * FROM advertisements where (idapproveType=2 or idapproveType=3) order by rand() limit $limit");
+    }
+    public function GetAdvertismentByUserId($userId) {
+        $result = $this->conn->query("SELECT * FROM advertisements where iduser=$userId");
+        return $result->fetch_assoc();
     }
 
     public function GetQuestionsBySubjectQuestionsId($id) {
