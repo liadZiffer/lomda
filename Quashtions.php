@@ -5,6 +5,7 @@ $db = new dbconnect();
 if (!isset($_SESSION['iduserType'])) {
     $db->Redirect("login.php");
 }
+
 if (!isset($_SESSION['subject'])) {
     $_SESSION['subject'] = $_GET['subject'];
     echo($_SESSION['iduserType']);
@@ -14,13 +15,18 @@ if ($_SESSION['subject'] != $_GET['subject']) {
     $_SESSION['subject'] = $_GET['subject'];
     unset($_SESSION['gameQuashtion']);
 }
+//get the id of subject selected by user
+$idSubjectQuestion = $_SESSION['subject'];
+//get the idcity by iduser
+$userIdCity = $db->GetUserCityByUserId($_SESSION['iduser'])['idcity'];
+
 if (!isset($_SESSION['gameQuashtion'])) {
     $_SESSION['gameQuashtion'] = array();
-    if($_SESSION['iduserType'] == 2){
-        $result = $db->GetQuestionsBySubjectQuestionsIdAndQnty($_GET['subject'], 5);
+    if($_SESSION['iduserType'] == 2){//unregistered user show only 5 questions
+        $result = $db->GetQuestionsBySubjectQuestionsIdAndQnty($_GET['subject'], 25);
     }
     else{
-        $result = $db->GetQuestionsBySubjectQuestionsIdAndQnty($_GET['subject'], 25);
+        $result = $db->GetQuestionsBySubjectQuestionsIdAndQnty($_GET['subject'], 5);
     }
     while ($row = $result->fetch_assoc()) {
         $_SESSION['gameQuashtion'][] = $row['idQuestion'];
@@ -33,7 +39,7 @@ if (!isset($_SESSION['gameQuashtion'])) {
 $error = "";
 if (isset($_POST['submit'])) {
     if (!isset($_POST['answer'])) {
-        $error = "לא ניבחרה תשובה";
+        $error = "לא נבחרה תשובה";
     }
     if (empty($error)) {
         $Question = $db->GetQuestionById($_GET['Quashtions']);
@@ -56,7 +62,7 @@ else if ( sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) ){
 <?php include 'header.php';?>
 
             <!-- Menu -->
-
+        <section id="questions-main">
             <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
                 <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
                 <nav class="menu_nav">
@@ -182,39 +188,54 @@ else if ( sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) ){
 
             </div>
 
-            <!-- Partners -->
+            <!-- Display advertisments -->
 
-            <div class="partners">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="partners_slider_container">
-                                <div class="owl-carousel owl-theme partners_slider">
-
-                                    <?php
-                                    if ($_SESSION['idcity'] == 0) {
-                                        $result = $db->GetAllAdvertisementsLimit(5);
-                                    } else {
-                                        $result = $db->GetAllAdvertisementsByCity($_SESSION['idcity']);
-                                    }
-                                    while ($row = $result->fetch_assoc()) {
-                                        ?>
+            <div class="container btmAdvertise">
 
 
-                                        <!-- Partner Item -->
-                                        <div class="owl-item partner_item"><img width="300" height="200" src="<?php echo str_replace("../", "", $row['image']); ?>" alt="בעיה בתמונה"></div>
-                                        <?php }
-                                        ?>
+                <div class="row">
 
-
-                                </div>
-                            </div>
+                    <div class="col-sm-8 main_adv">
+                        <div class="adv-title">
+                            <h2><a href="ourPartners.php?subject=<?php echo $_SESSION['subject']; ?>">השותפים שלנו</a></h2>
                         </div>
-                    </div>
-                </div>
-                <?php include 'advBottomBanner.php';?>
-            </div>
+                        <?php
+                //get relevant ads by user id city
+                $relevantAdsByCity = $db->getAdvertismentDetailsByIdCity($userIdCity,$idSubjectQuestion);
 
+                //check if theres result for subject test and for city - if yes - display in html
+                if($relevantAdsByCity && mysqli_num_rows($relevantAdsByCity)){
+                    
+                    while ($row = mysqli_fetch_array($relevantAdsByCity)) {?>
+                                                 <div class="business-info">
+                        <p class="businessName">
+                            <span>++++++++</span>
+                            <?php echo $row['businessName'] ?>
+                        </p>
+                        <p class="advertisingName"><?php echo $row['advertisingName'] ?></p>
+                        <p class="slogen"><?php echo $row['slogen'] ?></p>
+                        <p class="businessEmail"><?php echo $row['businessEmail'] ?></p>
+                        <p class="file_name">
+                            <img src="<?php echo $row['file_name']?>" >
+                        </p>
+                       
+
+                    </div>  
+
+                          <?php  } 
+ 
+                }
+                else{?>
+                    <p class="advertisingName">אין מפרסמים בעיר שלך</p>
+                <?php }?>
+                
+             
+                    </div>
+                    
+
+                </div>
+            </div>
+        </section><!-- END QUESTIONS SECTION -->
 
 
         </div>

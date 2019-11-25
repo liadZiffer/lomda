@@ -101,13 +101,13 @@ else{
         <div class="col col-md-12">
           <div class="form-group">
             <select name="idcity">
-                <option <?php if (isset($_POST['idcity']) && $row['idcity'] == $_POST['idcity']) { ?> selected <?php } ?>  value="0">כל עיר</option>
+                <option  value="0">כל עיר</option>
                 <?php
                 $cities = $db->GetAllCities();
                 if ($cities->num_rows > 0) {
                     while ($row = $cities->fetch_assoc()) {
                         ?>
-                        <option <?php if (isset($_POST['idcity']) && $row['idcity'] == $_POST['idcity']) { ?> selected <?php } ?>  value="<?php echo $row['idcity'] ?>"><?php echo $row['city_name'] ?></option>
+                        <option <?php if ($row['idcity'] == $result['idcity']) { ?> selected <?php } ?>  value="<?php echo $row['idcity'] ?>"><?php echo $row['city_name'] ?></option>
                         <?php
                     }
                 } else {
@@ -137,7 +137,8 @@ else{
                 if ($cities->num_rows > 0) {
                     while ($row = $cities->fetch_assoc()) {
                         ?>
-                        <option <?php if (isset($_POST['idSubjectQuestion']) && $row['idSubjectQuestion'] == $_POST['idSubjectQuestion']) { ?> selected <?php } ?>  value="<?php echo $row['idSubjectQuestion'] ?>"><?php echo $row['Subject_name'] ?></option>
+                        <option <?php if ($row['idSubjectQuestion'] == $result['idSubjectQuestion']) { ?> selected <?php } ?>  value="<?php echo $row['idSubjectQuestion'] ?>"><?php echo $row['Subject_name'] ?></option>
+                        
                         <?php
                     }
                 } else {

@@ -83,8 +83,6 @@ if (isset($_POST['advertiser'])) {
       }
         
         if ($result < 1) {
-          var_dump('hey');
-          exit;
             $error = "משתמש לא התווסף";
         }
         else

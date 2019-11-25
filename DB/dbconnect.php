@@ -203,6 +203,11 @@ class dbconnect {
     public function GetAllSubjectQuestions() {
         return $this->conn->query("SELECT * FROM subjectquestions");
     }
+    public function GetSubjectQuestionNameBySubjectId($id) {
+        $sql="SELECT Subject_name FROM subjectquestions where idSubjectQuestion =$id";
+        $result = $this->conn->query($sql);
+        return $result->fetch_assoc();
+    }
 
     public function GetAllQuestionType() {
         return $this->conn->query("SELECT * FROM questiontype");
@@ -236,6 +241,16 @@ class dbconnect {
     public function GetCityByID($id) {
         $result = $this->conn->query("SELECT * FROM cities where idcity=$id");
         return $result->fetch_assoc();
+    }
+    public function GetUserCityByUserId($id){
+        $result = $this->conn->query("SELECT idcity FROM `users` WHERE `iduser`=$id");
+        return $result->fetch_assoc();
+    }
+    public function getAdvertismentDetailsByIdCity($idcity,$idSubjectQuestion){
+        return $this->conn->query("SELECT `advertisingName`,`idcity`,`phone`,`website`,`file_name`,`slogen`,`businessEmail`,`businessName` FROM `advertisements` WHERE `idcity`= $idcity AND `idSubjectQuestion`=$idSubjectQuestion order by rand() LIMIT 4");
+    }
+    public function getAdvertismentDetailsBySubjectIdQuestion($idSubjectQuestion){
+        return $this->conn->query("SELECT `advertisingName`,`idcity`,`phone`,`website`,`file_name`,`slogen`,`businessEmail`,`businessName` FROM `advertisements` WHERE `idSubjectQuestion`=$idSubjectQuestion");
     }
     
     public function GetAllAdvertisements() {
