@@ -50,7 +50,7 @@ include 'header.php';
  
                 }
                 else{?>
-                    <p class="advertisingName">אין מפרסמים בעיר שלך</p>
+                    <p class="advertisingName">   אין מפרסמים במבחן זה</p>
                 <?php }?>
 
         </div>
