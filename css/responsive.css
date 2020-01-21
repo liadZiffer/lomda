@@ -1,0 +1,228 @@
+/*
+####################################################
+M E D I A  Q U E R I E S
+####################################################
+*/
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Bootstrap 4 breakpoints
+*/
+
+/* 
+Extra small devices (portrait phones, less than 576px) 
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
+@media (max-width: 1368px) {
+    .btn-register-wrap {
+        padding-left: 0;
+    }
+    .inner-icon p {
+        font-size: 15pt;
+    }
+    .section-two-title h2 {
+        font-size: 27pt;
+    }
+    #section-three .number-info {
+        color: #6d9ab8;
+        font-size: 3.8rem;
+    }
+    .text-info-simulators {
+        font-size: 1.5rem;
+    }
+    .footer_wrap {
+        padding-bottom: 5px;
+    }
+    .section-one-title h1 {
+        font-size: 57pt;
+    }
+    .section-one-subtitle h3 {
+        font-size: 30pt;
+    }
+    .section-one-title {
+        margin-bottom: 15px;
+    }
+    .nav-link {
+        font-size: 14pt;
+    }
+    .cta-register{
+        padding-left: 0;
+    }
+    .section-one-subtitle {
+        text-align: center;
+        margin-bottom: 75px;
+    }
+    
+    
+}
+@media (max-width: 480px) {  
+    .section-one-title h1 {
+        font-size: 40pt;
+        margin-bottom: 0;
+    }
+    .section-one-title {
+        padding-top: 10%;
+    }
+    .section-one-title {
+        margin-bottom: 0;
+    }
+    .section-one-subtitle h3 {
+        font-size: 14pt;
+    }
+    .ul-register-login {
+        justify-content: center!important;
+        margin-left: auto!important;
+        margin-bottom: 0;
+    }
+    a.navbar-brand {
+        text-align: left;
+        padding-right: 0;
+        padding-top: 1%;
+        padding-left: 1%;
+        position: fixed;
+        top: 0;
+    }
+    .btn-register-wrap li.list-inline-item.white-color {
+        font-size: 15px;
+    }
+    .fixed-top {
+        padding: 0;
+    }
+    .btn-register-wrap {
+        z-index: 0;
+    }
+    div#simulators-navbar {
+        background: #fff;
+        padding: 0;
+        max-width: 800px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1050;
+        top: 50px;
+    }
+    .nav-link {
+        color: #7e7e7e!important;
+        text-align: center;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        margin-left: 0;
+    }
+    .nav-link:before {
+        content : "";
+        position: absolute;
+        left: 25%;
+        bottom  : 0;
+        height  : 1px;
+        width   : 50%;  /* or 100px */
+        border-bottom:1px solid #e6e6e6;
+      }
+      .cta-register-btn {
+        width: 50%;
+        padding: 0;
+        font-size: 25px;
+    }
+    .section-one-subtitle {
+        margin-bottom: 80px;
+    }
+    .section-two-title h2 {
+        font-size: 13pt;
+    }
+        
+    #section-two .container {
+        margin-top: 30px;
+    }
+    .section-two-title {
+        margin-bottom: 0;
+    }
+    .inner-icon p {
+        margin-bottom: 0;
+    }
+    .inner-icon img {
+        padding-top: 40px;
+    }
+    .text-info-simulators {
+        font-size: 1rem;
+    }
+    #section-three .number-info {
+        font-size: 3rem;
+        padding-top: 0;
+    }
+    #button-to-top::after {
+        line-height: 35px;
+    }
+    #button-to-top {
+        width: 35px;
+        height: 35px;
+        right: 20px;
+    }
+
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+    .btn-register-wrap ul {
+        float: right;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (max-width: 768px) {  
+    .text-number-wrap{
+        padding-right: 0;
+    }
+    .text-info-simulators {
+        padding-right: 0;
+    }
+    .show-in-mobile{
+        display: block;
+      }
+      .hide-in-mobile{
+        display: none;
+      }
+      .footer_wrap {
+        padding: 20px 0;
+    }
+    .footer-logo-wrap{
+        margin-bottom: 15px;
+    }
+    .footer-menu-wrap {
+        margin-bottom: 20px;
+    }
+    .info-footer-wrap{
+        font-size: 14px;
+    }
+    .copyright_wrap {
+        font-size: 12px;
+    }
+    .nav-item {
+        padding-left: 0;
+    }
+    a.navbar-brand {
+        position: absolute;
+    }
+    .section-two-title h2 {
+        margin-bottom: 0;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+    
+}
+
+
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Custom media queries
+*/
+
+/* Set width to make card deck cards 100% width */
+@media (max-width: 950px) { 
+
+}

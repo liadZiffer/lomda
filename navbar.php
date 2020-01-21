@@ -1,48 +1,42 @@
-<!-- Header Content -->
-                <div class="header_container">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <div class="header_content d-flex flex-row align-items-center justify-content-start">
-                                    <div class="logo_container">
-                                        <a href="./index.php">
-                                            <div class="logo_text"><img src="templateImages/logo.png"></div>
-                                        </a>
-                                    </div>
-                                    <nav class="main_nav_contaner ml-auto">
-                                        <ul class="main_nav">
-                                            <li ><a href="subjects.php">בית</a></li>
-                                            <li><a href="login.php"> התנתק</a></li>
-                                        </ul>
-
-
-                                        <!-- Hamburger -->
-
-
-                                        <div class="hamburger menu_mm">
-                                            <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-                                        </div>
-                                    </nav>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="row navbar-wrap">
+    <!-- <div class="btn-register-wrap col-lg-4 col-md-4 col-sm-12">
+        <ul class="row ul-register-login">
+            <li class="list-inline-item white-color">
+                <a data-toggle="modal" data-target="#system-login">התחבר</a>
+            </li>
+            <li class="list-inline-item white-color">
+                <a data-toggle="modal" data-target="#system-register"> הרשמה</a>
+            </li>
+        </ul>
+    </div> -->
+    <?php
+    
+    
+    
+    ?>
+    <div class="section-one-nav-bar col-lg-8 col-md-8">
+        <nav class="navbar navbar-expand-md  fixed-top  logo">
+            <button id="nav-icon1" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#simulators-navbar" aria-controls="simulators-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <!-- <div id="nav-icon1" type="button" data-toggle="collapse" data-target="#simulators-navbar" aria-controls="simulators-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div> -->
+            <div class="collapse navbar-collapse  navbar-right col-lg-11 col-md-11" id="simulators-navbar">
+                <div class="navbar-nav ml-auto">
+                <!-- <span class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
+                    <a class="nav-item nav-link white-color" href="#">דף הבית</a>
+                    <a class="nav-item nav-link white-color" href="#">השאלונים שלנו</a>
+                    <a class="nav-item nav-link white-color" href="#">מי אנחנו?</a>
+                    <a class="nav-item nav-link white-color" href="#">צרו קשר</a>
                 </div>
-
-
-            </header>
-
-            <!-- Menu -->
-
-            <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
-                <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-                <nav class="menu_nav">
-                    <ul class="menu_mm">
-                        <li class="menu_mm"><a href="subjects.php">בית</a></li>
-                        <li><a href="login.php"> התנתק</a></li>
-                    </ul>
-
-                </nav>
             </div>
+            <a class="navbar-brand logo col-lg-1 col-md-1 col-sm-1 col-2" href="#"><img src="images/site-images/logo.png" alt="לוגו אתר סימולטורס" title="לוגו אתר סימולטורס"></a>
+        </nav>
+    </div>
+</div>
 

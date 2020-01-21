@@ -1,68 +1,47 @@
             <!-- Footer -->
-            <footer class="footer">
-                <div class="footer_background" style="background-image:url(templateImages/footer_background.png)"></div>
-                <div class="container">
-                    <div class="row footer_row">
-                        <div class="col">
-                            <div class="footer_content">
-                                <div class="row">
-
-                                    <div class="col-lg-3 footer_col">
-
-                                        <!-- Footer About -->
-                                        <div class="footer_section footer_about">
-                                            <div class="footer_logo_container">
-                                                <a href="#">
-                                                    <div class="footer_logo_text"><img src="templateImages/logo.png"></div>
-                                                </a>
-                                            </div>
-
-                                            <!--<div class="footer_social">
-                                                    <ul>
-                                                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                    </ul>
-                                            </div>-->
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-3 footer_col">
-
-                                        <!-- Footer Contact -->
-                                        <div class="footer_section footer_contact">
-                                            <div class="footer_title">צור קשר</div>
-                                            <div class="footer_contact_info" dir="rtl">
-                                                <ul>
-                                                    <li>Email: chaim.10wave@gmail.com</li>
-                                                    <li style="text-align: right">טלפון:  08-664-4435</li>
-                                                    <li style="text-align: right">עמק האלה 250, מודיעין-מכבים-רעות</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-
-
-
-                                </div>
+            <footer class="footer white-color" id="footer">
+                <div class="footer_wrap text-center">
+                    <div class="container">
+                        <div class="row">
+                        <div class="col-lg-4 col-12 footer-logo-wrap show-in-mobile order-first">
+                                <img src="images/site-images/logo-footer.png" alt="לוגו סימולטרים תחתית מסך" title="לוגו סימולטרים תחתית מסך">
+                        </div>
+                            <div class="col-lg-4 col-12 col-sm-12 info-footer-wrap order-lg-first order-12">
+                                <p class="footer-email-wrap col-md-12">
+                                    <span>דואר-אלקטרוני: </span> chaim.10wave@gmail.com  
+                                </p>
+                                <p class="footer-phone-wrap col-md-12">
+                                    <span>מספר טלפון: </span> 08-664-4435  
+                                </p>
+                                <p class="footer-address-wrap col-md-12">
+                                    <span>כתובת החברה: </span> עמק האלה 250, מודיעין-מכבים-רעות 
+                                </p>
+                            </div>
+                            <div class="col-lg-4 footer-logo-wrap hide-in-mobile">
+                                <img src="images/site-images/logo-footer.png" alt="לוגו סימולטרים תחתית מסך" title="לוגו סימולטרים תחתית מסך">
+                            </div>
+                            <div class="col-lg-4 col-12 col-sm-12 footer-menu-wrap ">
+                                <a class="nav-item nav-link white-color" href="#">דף הבית</a>
+                                <a class="nav-item nav-link white-color" href="#">השאלונים שלנו</a>
+                                <a class="nav-item nav-link white-color" href="#">מי אנחנו?</a>
+                                <a class="nav-item nav-link white-color" href="#">צרו קשר</a>
+                            </div>
+                        </div>
+                        <div class="copyright_wrap text-center">
+                            <div class="content_wrap container">
+                                <p>© 2020 All Rights Reserved. <a href="#">Terms of use</a> and <a href="/privacy-policy/">Privacy Policy</a></p>	
                             </div>
                         </div>
                     </div>
-
-
                 </div>
+
             </footer>
 
-        </div>
 
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="styles/bootstrap4/popper.js"></script>
         <script src="styles/bootstrap4/bootstrap.min.js"></script>
+        <script src="js/wow.min.js"></script>
         <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
         <script src="plugins/greensock/TweenMax.min.js"></script>
         <script src="plugins/greensock/TimelineMax.min.js"></script>
