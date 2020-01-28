@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+ header("Access-Control-Allow-Origin: *");
+?>
 <html lang="he">
     <head>
 

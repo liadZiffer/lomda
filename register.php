@@ -2,53 +2,28 @@
 $notShowUserType = array(1, 3);
 include_once './DB/dbconnect.php';
 $db = new dbconnect();
-$error = "";
-if (isset($_POST['register'])) {
-    if ($db->IsUserExist($_POST['email'])) {
-        $error .= "אימייל קיים<br>";
-    }
-    $phone = str_replace("-", "", $_POST['phone']);
-    if (!is_numeric($phone)) {
-        $error .= "מספר טלפון לא חוקי<br>";
-    }
-    if ($_POST['idcity'] == 0) {
-        $error = "לא נבחרה עיר<br>";
-    }
-    if (empty($error)) {
-        $result = $db->InsertUser($_POST['email'], $_POST['password'], $_POST['firstname'], $_POST['lastname'], $_POST['idcity'], $phone, $_POST['birthdate'], $_POST['iduserType']);
-        if ($result < 1) {
-            $error = "משתמש לא התווסף";
-        } else {
-            session_start();
-            $_SESSION['iduser'] = $result;
-            $_SESSION['fullname'] = $_POST['firstname'] . ' ' . $_POST['lastname'];
-            $_SESSION['iduserType'] = $_POST['iduserType'];
-            echo "<script type='text/javascript'> $(window).load(function(){ $('#system-login').modal('show'); }); </script>";
-            $db->Redirect("/");
-            $error = "משתמש  התווסף";
-        }
-    }
-}
 ?>
 
-
-
-
-
-<form action="register.php" method="POST" autocomplete="off">
+<form action method="POST" id="register-form">
+<div class="form-row">
+    <div class="form-group col-md-6">
+      <label class="sr-only" for="inputPassword4">שם משפחה</label>
+      <input type="text" name="lastName" class="form-control form-rounded text-right" id="lastName" placeholder="שם משפחה">
+    </div>
+    <div class="form-group col-md-6">
+      <label class="sr-only" for="email">שם פרטי</label>
+      <input type="text" class="form-control form-rounded text-right" name="firstName" id="firstName" placeholder="שם פרטי" >
+    </div>
+  </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label class="sr-only" for="inputPassword4">סיסמא</label>
-      <input type="password" class="form-control form-rounded text-right" id="password" placeholder="סיסמא"
-      value="<?php
-        if (isset($_POST['password'])) {
-            echo $_POST['password'];
-        }?>"
+      <input type="password" name="password-register" class="form-control form-rounded text-right" id="password-register" placeholder="סיסמא"
       >
     </div>
     <div class="form-group col-md-6">
       <label class="sr-only" for="email">כתובת מייל</label>
-      <input type="email" class="form-control form-rounded text-right" name="email" id="email" placeholder="כתובת מייל" value="<?php
+      <input type="email" class="form-control form-rounded text-right" name="email-register" id="email-register" placeholder="כתובת מייל" value="<?php
             if (isset($_POST['email'])) {
                 echo $_POST['email'];
                  }?>"
@@ -59,7 +34,7 @@ if (isset($_POST['register'])) {
   <div class="form-row">
     <div class="form-group col-md-6">
         <label class="sr-only" for="phone">טלפון</label>
-        <input type="text" class="form-control form-rounded text-right" id="phone" placeholder="מספר טלפון"  name="phone" value="<?php
+        <input type="text" class="form-control form-rounded text-right" id="phone-register" placeholder="מספר טלפון"  name="phone-register" value="<?php
             if (isset($_POST['phone'])) {
                 echo $_POST['phone'];
             }
@@ -68,7 +43,7 @@ if (isset($_POST['register'])) {
     </div>
     <div class="form-group col-md-6" id="city-reg-wrap">
         <label class="sr-only" for="idcity" dir='rtl'>בחר עיר</label>
-        <select class="form-control form-rounded text-right pull-left" name="idcity" id="idcity" >
+        <select class="form-control form-rounded text-right pull-left" name="idcity-register" id="idcity-register" >
             <option <?php if (isset($_POST['idcity']) && $row['idcity'] == $_POST['idcity']) { ?> selected <?php } ?>  value="0">בחר עיר</option>
 
             <?php
@@ -89,8 +64,9 @@ if (isset($_POST['register'])) {
   </div>
   <div class="form-row">
     <div class="form-group col-md-12">
-      <label class="sr-only" for="inputCity">סוג משתמש</label>
-                                          <select name="iduserType"  class="form-control form-rounded col-md-12" dir="rtl">
+      <label class="sr-only"  for="inputCity">סוג משתמש</label>
+                                          <select id="iduserType" name="iduserType"  class="form-control form-rounded col-md-12" dir="rtl">
+                                          <option <?php if (isset($_POST['iduserType']) && $row['iduserType'] == $_POST['iduserType']) { ?> selected <?php } ?>  value="0">בחר משתמש</option>
                                         <?php
                                         $usertypes = $db->GetAlluserTypes();
                                         if ($usertypes->num_rows > 0) {
@@ -111,18 +87,11 @@ if (isset($_POST['register'])) {
                                     if (!empty($error)) {
                                         ?>
                                         <label style="color: red"><?php echo $error; ?></label><br>
-
+                                        
                                     <?php } ?>
     </div>
   </div>
-  <!-- <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
-    </div>
-  </div> -->
+  <p class="show_msg-register"></p>
   <button type="submit" name="register" class="btn btn-primary col-md-12" id="submit-register">הרשם</button>
 
 </form>

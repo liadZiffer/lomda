@@ -229,58 +229,150 @@ $('#advertisingForm').keydown(function(e){
     }
 
 })
-/**
- * ajax call - advertiser form update
- */
-    //login
-  //   $(function() {
-  //     $('#advForm').on('submit', function(e) {
-  //         e.preventDefault();
-  //         valid = true;//default login flag
-  //         if ($('#businessName').val() == '') {
-  //           message = "יש למלא שם חבריש למלא שם חברה";              valid = false;
-  //         }
-  //         else if ($('#firstname').val() == '' && valid) {//if password false and username true
-  //             message = "יש למלא שם משפחה";
-  //             valid = false;
-  //         }
-  //         else if ($('#lastname').val() == '' && valid) {//if password false and username true
-  //           message = "Please enter a password";
-  //           valid = false;
-  //       }
-  //       else if ($('#website').val() == '' && valid) {//if password false and username true
-  //         message = "יש למלא כתובת אתר חברה";
-  //         valid = false;
-  //     }
-  //     else if ($('#phone').val() == '' && valid) {//if password false and username true
-  //       message = "נא למלא מספר טלפון";
-  //       valid = false;
-  //   }
-  //   else if ($('#businessEmail').val() == '' && valid) {//if password false and username true
-  //     message = "נא למלא כתובת מייל";
-  //     valid = false;
-  // }
-  //         if (!valid) {//if valid is false
-  //             $('.show_error').css("text-align", "center");
-  //             $('.show_error').css("color", "#F14141");
-  //             $('.show_error').css("font-weight", "bold");
-  //             $('.show_error').css("padding-left", "3%");
-  //             $('.show_error').html(message);
-  //             console.log("valid is..."+valid);
-  //             return valid;
-  //         }
-  //         $.ajax({
-  //             type: 'post',
-  //             url: 'http://localhost/lomda/advertiser-insert.php',
-  //             data: $('#advForm').serialize(),
-  //             success: function(data) {
-  //              console.log(data);
-  //                 // var _data = data;
-  //                 // alert (_data);
-  //             }
-  //         });
-  //     });
-  // });
+
+
+
+        //register-form handler
+        $(function() {
+          $('#register-form').on('submit', function(e) {
+              e.preventDefault();
+              valid = true;//default login flag
+              if ($('#firstName').val() == '') {
+                message = "הזינו שם פרטי";
+                valid = false;
+              }
+              else if ($('#lastName').val() == '') {
+                  message = "הזינו שם משפחה";
+                  valid = false;
+              }
+              else if ($('email-register').val() == '') {
+                message = "הזינו כתובת אימייל";
+                valid = false;
+              }
+              else if ($('#idcity-register').val() == '') {
+                message = "בחרו עיר מהרשימה";
+                valid = false;
+              }
+              else if ($('#iduserType').val() == '') {
+                message = "בחרו סוג משתמש";
+                valid = false;
+              }
+              if (!valid) {//if valid is false
+                  $('.show_msg-register').css("text-align", "center");
+                  $('.show_msg-register').css("color", "#F14141");
+                  $('.show_msg-register').css("font-weight", "bold");
+                  $('.show_msg-register').css("padding-left", "3%");
+                  $('.show_msg-register').html(message);
+                  return valid;
+              }
+              
+              $.ajax({
+                  type: 'post',
+                  url: 'http://localhost/lomda/register-handler.php',
+                  data: $('#register-form').serialize(),
+                  success: function(data) {
+                      var message = data;
+                      alert(message);
+                      if ((message.indexOf('user') >= 0) ) { //check if user 
+                          window.location.replace("subjects.php");
+                      } 
+                      else if ((message.indexOf('user') >= 0) ) { //check if user admin
+                        window.location.replace("./admin/index.php");
+                      }
+                      else if ((message.indexOf('advertiser') >= 0) ) { //check if advertiser
+                        window.location.replace("advertiserMainRoute.php");
+                      }
+                      else {//error
+                          $('.show_msg-register').css("text-align", "center");
+                          $('.show_msg-register').css("color", "#F14141");
+                          $('.show_msg-register').css("font-weight", "600");
+                          $('.show_msg-register').css("padding-left", "0");
+                          $('.show_msg-register').css("width", "100%");
+                          $('.show_msg-register').html(message);
+                      }
+                  }
+              });
+          });
+      });
+
+
+        //login-form handler
+        $(function() {
+          $('#login-form').on('submit', function(e) {
+              e.preventDefault();
+              valid = true;//default login flag
+              if ($('#email-login').val() == '') {
+                  message = "Please enter a username";
+                  valid = false;
+              }
+              else if ($('#password-login').val() == '' && valid) {//if password false and username true
+                  message = "Please enter a password";
+                  valid = false;
+              }
+              if (!valid) {//if valid is false
+                  $('.show_msg').css("text-align", "center");
+                  $('.show_msg').css("color", "#F14141");
+                  $('.show_msg').css("font-weight", "bold");
+                  $('.show_msg').css("padding-left", "3%");
+                  $('.show_msg').html(message);
+                  console.log("valid is..."+valid);
+                  return valid;
+              }
+              
+              $.ajax({
+                  type: 'post',
+                  url: 'http://localhost/lomda/login-handler.php',
+                  data: $('#login-form').serialize(),
+                  success: function(data) {
+                      var message = data;
+                      if ((message.indexOf('user') >= 0) ) { //check if user 
+                          window.location.replace("subjects.php");
+                      } 
+                      else if ((message.indexOf('user') >= 0) ) { //check if user admin
+                        window.location.replace("./admin/index.php");
+                      }
+                      else if ((message.indexOf('advertiser') >= 0) ) { //check if advertiser
+                        window.location.replace("advertiserMainRoute.php");
+                      }
+                      else {//error
+                          $('.show_msg').css("text-align", "center");
+                          $('.show_msg').css("color", "#F14141");
+                          $('.show_msg').css("font-weight", "600");
+                          $('.show_msg').css("padding-left", "0");
+                          $('.show_msg').css("width", "100%");
+                          $('.show_msg').html(message);
+                      }
+                  }
+              });
+          });
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
