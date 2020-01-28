@@ -16,7 +16,7 @@ $error = "";
 //handle upload file to server
 if (isset($_POST['advertiser'])) {
   $adDetails=$db->GetAdvertismentByUserId($_SESSION['iduser']);
-  
+  $countfiles = count($_FILES['file']['name']);
   if(empty($adDetails['file_name']) ||
    (!empty($_FILES['file']['name']) &&
      substr($adDetails['file_name'],
@@ -33,6 +33,7 @@ if (isset($_POST['advertiser'])) {
     $fileType = pathinfo($fileName,PATHINFO_EXTENSION);
     $allowTypes = array('jpg','png','jpeg','gif','pdf');
     if(isset($fileName) && !empty($fileName)){
+      
       if(in_array($fileType, $allowTypes)){
         if(file_exists($fileName))
         {
@@ -98,90 +99,95 @@ if (isset($_POST['advertiser'])) {
 ?>
 <?php include 'header.php'; ?>
 
-<section id="advertiser-main">
-<div class="row">
-    <div class="container">
-    <div  class="courses">
-      <div  class="container">
-          <div class="row">
-              <div class="col">
-                  <div class="section_title_container text-center" dir="rtl">
-                      <h2 class="section_title">שלום <?php echo $_SESSION['fullname'] ?></h2>                            
-                  </div>
-              </div>
-          </div>
-      </div>
+<div id="advertiser-main">
+<div class="navbar-wrap navbar-black">
+                <?php include 'navbar.php';?>
             </div>
-        <div class="text-center">
-            <h1>דף מפרסם עצמאית</h1>
+  <div class="row">
+      <div class="container">
+      <div  class="courses">
+        <div  class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="section_title_container text-center" dir="rtl">
+                        <h2 class="section_title">שלום <?php echo $_SESSION['fullname'] ?></h2>                            
+                    </div>
+                </div>
+            </div>
         </div>
-        <?php 
-        if($db->isAdExixt($_SESSION['iduser'])){
-          $result = $db->getAdExixst($_SESSION['iduser']);
-          $getAdImg = $db->getAdImg($_SESSION['iduser']);
-        }
-      ?>
-    <form role="form" id="advform"  action="advertiser.php<?php if(isset($result)){echo "?idAdvertisement=".$result['idAdvertisement'];} ?>" method="POST" enctype="multipart/form-data" class="validate">
+              </div>
+          <div class="text-center">
+              <h1>דף מפרסם עצמאית</h1>
+          </div>
+          <?php 
+          if($db->isAdExixt($_SESSION['iduser'])){
+            $result = $db->getAdExixst($_SESSION['iduser']);
+            $getAdImg = $db->getAdImg($_SESSION['iduser']);
+          }
+        ?>
+      <form role="form" id="advform"  action="advertiser.php<?php if(isset($result)){echo "?idAdvertisement=".$result['idAdvertisement'];} ?>" method="POST" enctype="multipart/form-data" class="validate">
+        
+      <p class="show_error"></p>
+      <div class="row">
+      <div class="col-12 col-lg-8 col-md-8 col-sm-12">
+      <div class="col col-md-12">
+          <div class="form-group">
+            <label for="first">שם החברה</label>
+            <input type="text" class="form-control" value="<?php if(isset($result)){echo $result['businessName'];} ?>"  name="businessName" placeholder="שם החברה" id="businessName">
+          </div>
+        </div>
+        <div class="col col-md-12">
+          <div class="form-group">
+            <label for="last">שם פרטי</label>
+            <input type="text" class="form-control" value="<?php if(isset($result)){echo $result['firstName'];} ?>"  name="firstName" placeholder="שם פרטי" id="firstName">
+          </div>
+        </div>
+        <div class="col col-md-12">
+          <div class="form-group">
+            <label for="first">שם משפחה</label>
+            <input type="text" class="form-control" name="lastName" value="<?php if(isset($result)){echo $result['lastName'];} ?>" placeholder="שם משפחה" id="lastName">
+          </div>
+        </div>
+
+        <div class="col col-md-12">
+          <div class="form-group">
+            <label for="last">כתובת דף הבית של החברה</label>
+            <input type="text" class="form-control" name="website" value="<?php if(isset($result)){echo $result['website'];} ?>" placeholder="כתובת דף הבית של החברה" id="website">
+          </div>
+        </div>
+        <div class="col col-md-12">
+          <div class="form-group">
+            <label for="last"></label>מספר טלפון</label>
+            <input type="tel" class="form-control"  name="phone" value="<?php if(isset($result)){echo $result['phone'];} ?>" placeholder="מספר טלפון"id="phone">
+          </div>
+        </div>
+        <div class="col col-md-12">
+
+          <div class="form-group">
+          <label for="email">כתובת מייל</label>
+                  <input type="email" class="form-control" value="<?php if(isset($result)){echo $result['businessEmail'];} ?>" name="businessEmail" id="businessEmail" placeholder="כתובת אימייל">
+          </div>
+          </div>
+          </div><!--end business info-->
+          <div class="col col-lg-4 col-md-4 col-sm-4">
+    <div class="imgUp form-group">
+      <div class="imagePreview" style="background:url('<?php if(isset($getAdImg)){echo $getAdImg['file_name'];} ?>')!important"></div>
+  <label for="InputFile" class="btn btn-primary">בחר פרסומת להעלאה</label>
+  <input type="file" value="<?php if(isset($result)){echo $result['file_name'];} ?>" class="uploadFile img" name="file[]" id="InputFile" multiple >
       
-    <p class="show_error"></p>
-    <div class="row">
-    <div class="col col-lg-8 col-md-8 col-sm-8">
-    <div class="col col-md-12">
-        <div class="form-group">
-          <label for="first">שם החברה</label>
-          <input type="text" class="form-control" value="<?php if(isset($result)){echo $result['businessName'];} ?>"  name="businessName" placeholder="שם החברה" id="businessName">
-        </div>
+    </div>
       </div>
-      <div class="col col-md-12">
-        <div class="form-group">
-          <label for="last">שם פרטי</label>
-          <input type="text" class="form-control" value="<?php if(isset($result)){echo $result['firstName'];} ?>"  name="firstName" placeholder="שם פרטי" id="firstName">
-        </div>
-      </div>
-      <div class="col col-md-12">
-        <div class="form-group">
-          <label for="first">שם משפחה</label>
-          <input type="text" class="form-control" name="lastName" value="<?php if(isset($result)){echo $result['lastName'];} ?>" placeholder="שם משפחה" id="lastName">
-        </div>
       </div>
 
-      <div class="col col-md-12">
-        <div class="form-group">
-          <label for="last">כתובת דף הבית של החברה</label>
-          <input type="text" class="form-control" name="website" value="<?php if(isset($result)){echo $result['website'];} ?>" placeholder="כתובת דף הבית של החברה" id="website">
-        </div>
-      </div>
-      <div class="col col-md-12">
-        <div class="form-group">
-          <label for="last"></label>מספר טלפון</label>
-          <input type="tel" class="form-control"  name="phone" value="<?php if(isset($result)){echo $result['phone'];} ?>" placeholder="מספר טלפון"id="phone">
-        </div>
-      </div>
-      <div class="col col-md-12">
+       <div class="text-center submit-btn">
+        <button type="submit" id="sendAdv" name="advertiser" class="btn btn-primary">עדכן עכשיו!</button>
 
-        <div class="form-group">
-        <label for="email">כתובת מייל</label>
-                <input type="email" class="form-control" value="<?php if(isset($result)){echo $result['businessEmail'];} ?>" name="businessEmail" id="businessEmail" placeholder="כתובת אימייל">
-        </div>
-        </div>
-        </div><!--end business info-->
-        <div class="col col-lg-4 col-md-4 col-sm-4">
-  <div class="imgUp form-group">
-    <div class="imagePreview" style="background:url('<?php if(isset($getAdImg)){echo $getAdImg['file_name'];} ?>')!important;background-repeat: no-repeat;background-position: center center;border: 1px solid;width: 100%;height: 28em;"></div>
-<label for="InputFile" class="btn btn-primary">בחר פרסומת להעלאה</label>
-<input type="file" value="<?php if(isset($result)){echo $result['file_name'];} ?>" class="uploadFile img" name="file" id="InputFile" >
-	  
+       </div>   
+    </form>
+
+      </div>
+      <!--end container-->
+
   </div>
-    </div>
-    </div>
-
-
-    <button type="submit" id="sendAdv" name="advertiser" class="btn btn-primary">עדכן עכשיו!</button>
-  </form>
-
-    </div>
-    <!--end container-->
-
-</div>
-</section>
+        </div>
 <?php include 'footer.php'; ?>

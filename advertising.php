@@ -53,13 +53,17 @@ if (isset($_POST['advertising'])) {
   ?>
   <?php include 'header.php'; ?>
   
-  <section id="advertising-main">
-  <div class="row">
+  <div id="advertising-main-add">
+  <div class="navbar-wrap navbar-black">
+                <?php include 'navbar.php';?>
+            </div>
       <div class="container">
-      <div  class="courses">
         <div  class="container">
             <div class="row">
                 <div class="col">
+                <div class="text-center">
+                  <h1 class="main-menu-adv-title">הוספת ועריכת פרסומת</h1>
+              </div>
                     <div class="section_title_container text-center" dir="rtl">
                         <h2 class="section_title">שלום <?php echo $_SESSION['fullname'] ?></h2>                            
                     </div>
@@ -75,11 +79,6 @@ else{
 ?>
 
         </div>
-              </div>
-
-          <div class="text-center">
-              <h1>הוספת ועריכת פרסומת</h1>
-          </div>
           <?php 
           if($db->isAdExixt($_SESSION['iduser'])){
             $result = $db->getAdExixst($_SESSION['iduser']);
@@ -92,7 +91,7 @@ else{
         
       <p class="show_error"></p>
       <div class="row">
-      <div class="col col-lg-12 col-md-12 col-sm-12">
+      <div class="col-12 col-sm-6 main-add-adv-wrap margin0auto">
       <div class="col col-md-12">
           <div class="form-group">
             <input type="text" class="form-control" value="<?php if(isset($result)){echo $result['advertisingName'];} ?>"  name="advertisingName" placeholder="שם הפרסומת" id="advertisingName">
@@ -100,7 +99,7 @@ else{
         </div>
         <div class="col col-md-12">
           <div class="form-group">
-            <select name="idcity">
+            <select name="idcity" class="dir-rtl">
                 <option  value="0">כל עיר</option>
                 <?php
                 $cities = $db->GetAllCities();
@@ -131,7 +130,7 @@ else{
   
         <div class="col col-md-12">
           <div class="form-group">
-          <select name="idSubjectQuestion" id="idSubjectQuestion">
+          <select name="idSubjectQuestion" id="idSubjectQuestion" class="dir-rtl">
                 <?php
                 $cities = $db->GetAllSubjectQuestions();
                 if ($cities->num_rows > 0) {
@@ -151,27 +150,29 @@ else{
         </div>
         <div class="col col-md-12">
           <div class="form-group">
-          <label for="last"></label>תאריך התחלה</label>
-            <input name="startDate" type="date" value="<?php if(isset($result)){echo $result['startdate'];} ?>"  id="startDate" placeholder="הזן תאריך התחלה לפרסומת">         
+          <label class="dir-rtl col-sm-4 label-adv-add-date" for="last">תאריך התחלה</label>
+            <input name="startDate" class="col-sm-12" type="date" value="<?php if(isset($result)){echo $result['startdate'];} ?>"  id="startDate" placeholder="הזן תאריך התחלה לפרסומת">         
          </div>
         </div>
         <div class="col col-md-12">
           <div class="form-group">
-            <label for="last"></label> תאריך סיום</label>
-            <input name="endDate" type="date" id="endDate" value="<?php if(isset($result)){echo $result['enddate'];} ?>"  placeholder="הזן תאריך סיום לפרסומת">         
+            <label class="dir-rtl col-sm-4 label-adv-add-date" for="last">תאריך סיום</label>
+            <input name="endDate"  class="col-sm-12" type="date" id="endDate" value="<?php if(isset($result)){echo $result['enddate'];} ?>"  placeholder="הזן תאריך סיום לפרסומת">         
          </div>
         </div>
           </div><!--end business info-->
       </div>
   
-  
+      <div class="text-center submit-btn">
       <button type="submit" id="sendAdv" name="advertising" class="btn btn-primary">עדכן עכשיו!</button>
+
+       </div>   
+      
     </form>
   
       </div>
       <!--end container-->
-  
+
   </div>
-  </section>
   <?php include 'footer.php'; ?>
                 <?php } ?>

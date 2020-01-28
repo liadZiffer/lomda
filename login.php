@@ -8,7 +8,7 @@ if (isset($_GET['iduser']) && $_GET['iduser'] == 0) {
 session_start();
 $_SESSION['iduser'] = 0;
 $_SESSION['idcity'] = 0;
-$_SESSION['iduserType'] = 2;// 2 its mean admin
+$_SESSION['iduserType'] = 3;// 2 its RANDOM USER
 $db->Redirect("subjects.php");
 }
 

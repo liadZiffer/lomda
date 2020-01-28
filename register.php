@@ -23,7 +23,8 @@ if (isset($_POST['register'])) {
             $_SESSION['iduser'] = $result;
             $_SESSION['fullname'] = $_POST['firstname'] . ' ' . $_POST['lastname'];
             $_SESSION['iduserType'] = $_POST['iduserType'];
-            $db->Redirect("login.php");
+            echo "<script type='text/javascript'> $(window).load(function(){ $('#system-login').modal('show'); }); </script>";
+            $db->Redirect("/");
             $error = "משתמש  התווסף";
         }
     }

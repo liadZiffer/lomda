@@ -11,20 +11,20 @@ if (!isset($_SESSION['iduser'])) {
 
 ?>
     <?php include_once './header.php'; ?>
-    <section id="subjects">
+    <div id="subjects">
 
-        <div class="container-fluid relative">
-            <div class="hello-user white-color">
+        <div class="container-fluid relative navbar-black">
+            <!-- <div class="hello-user white-color dir-rtl">
                 <p>שלום <?php echo $_SESSION['fullname'] ?></p>
                 <p class="logout-btn white-color"><a href="logout.php">ניתוק מהמערכת</a></p>
-            </div>
-    
+            </div> -->
+                <?php include_once './navbar.php'; ?>
 
-            <?php include_once './navbar.php'; ?>
+
         </div>
 
-        <div class="container">
-            <div class="row">
+        <div class="row">
+            <div class="container">
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center table-subject-wrap ">
                             <h1>בחירת נושא</h1>
@@ -69,4 +69,4 @@ if (!isset($_SESSION['iduser'])) {
 
         <?php include_once './footer.php'; ?>
 
-    </section>
+    </div>

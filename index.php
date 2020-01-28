@@ -32,52 +32,32 @@
             <div class="modal-body dir-rtl">
                 <?php include_once 'login.php'; ?>
             </div>
-            <!-- <div class="modal-footer row">
-                <div class="col facebook-wrap-login">
-                    <button> </button>
-                </div>
-                <div class="col google-wrap-login">
-                    <button></button>
-                </div>
-            </div> -->
          </div>
       </div>
    </div>
 
+        
 
-    <div class="container-fluid">
-        <section id="section-one" style="border: 1px solid red">
-            <div class="row">
-            <div class="btn-register-wrap col-lg-4 col-md-4 col-sm-12">
-            <ul class="row ul-register-login">
-                <li class="list-inline-item white-color">
-                    <a data-toggle="modal" data-target="#system-login">התחבר</a>
-                </li>
-                <li class="list-inline-item white-color">
-                    <a data-toggle="modal" data-target="#system-register"> הרשמה</a>
-                </li>
-            </ul>
-        </div>
-            </div>
-        <?php include_once 'navbar.php'; ?>  
-            <div class="row text-white">
-                <div class="section-one-title col-lg-11 col-md-11 col-sm-11">
-                    <h1 class="assitant-extra-bold">מערכת לומדות</h1>
+           <!-- Header -->
+        <header class="masthead relative">
+        <?php include_once 'navbar.php'; ?>
+            <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in section-one-title">
+                <h1 class="assitant-extra-bold">מערכת לומדות</h1>
                 </div>
-                <div class="section-one-subtitle Assistant-Bold col-lg-11 col-md-11 col-sm-11">
+                <div class="section-one-subtitle Assistant-Bold">
                     <h3>סימולאטור לבחינות לצורך תרגול ולמידה</h3>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col cta-register text-center dir-rtl">
-                <button type="button" class="btn cta-register-btn" data-toggle="modal" data-target="#system-register">הרשמו עכשיו!</button>
+                    
+                    <a class="btn cta-register-btn" href="login.php?iduser=0">רוצים לנסות? לחצו כאן!</a>
                 </div>
-            </div>          
-
-
-        </section>
+            </div>
+            </div>
+        </header>
         <!--end of section-one-->
-        <section id="section-two" style="border: 1px solid red">
+        <section id="section-two">
             <div class="container">
             <div class="row">
                     <div class=" section-two-wrap ">
@@ -117,38 +97,43 @@
             </div>
         </section>
         <!--end of section-two-->
-        <section id="section-three" style="border: 1px solid blue">
+        <section id="section-three">
+            <div class="section-two-title">
+                <h2 class="black-color Assistant-Bold">
+                    היתרונות של מערכת הסימולטרים
+                </h2>
+            </div>
             <div class="row info-text">
-                <div class="laptop-img text-center col-lg-4 col-md-4 wow slideInLeft" data-wow-duration="1.5s" data-wow-delay="1.5s">
+                <div class="laptop-img text-center col-lg-6 col-md-6 col-sm-12 wow slideInLeft" data-wow-duration="1.5s" data-wow-delay="1.5s">
                     <img class="img-fluid" src="images/site-images/computer.png" alt="אייקון מבחן מתווכים רשמי" title="אייקון מבחן מתווכים רשמי">
                 </div>
-                <div class="text-number-wrap col-lg-8 col-md-8 row">
+                <div class="text-number-wrap col-lg-6 col-md-6 col-sm-12 row">
                     <div class="col-lg-10 dir-rtl col-md-10 col-10 col-sm-10 text-info-simulators text-right wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
-                        <span>משתמשים הנרשמים בחינם, יוכלו לבצע תרגול וסימולאטורים למבחנים התואמים את המבחנים הרשמיים</span>
+                        <span>תרגולי מבחנים, בכל נושא שתרצו , גם בנייד והכל בחינם</span>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 number-info wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
                         <span>1</span>
                     </div>
                     <div class="col-lg-10 dir-rtl col-md-10 col-10 col-sm-10 text-info-simulators text-right wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
-                        <span>משתמש שאינו רשום יכול לתרגל בחינם מבחנים קצרים יותר</span>
+                        <span>הרשמה למערכת באופן ידידותי וקל, שתתחילו ישר לצבור נקודות במבחן</span>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 number-info wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
                         <span>2</span>
                     </div>
                     <div class="col-lg-10 dir-rtl col-md-10 col-10 col-sm-10 text-info-simulators text-right wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
-                        <span>בעת הכניסה למערכת הלומדות יש לבחור מבחן מכל הלומדות והנושאים הפעילים כעת במערכת</span>
+                        <span>בוחרים מבחן מבין עשרות מבחנים שזמינים לכם 24/7 מתי שרק תרצו</span>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 number-info wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
                         <span>3</span>
                     </div>
                     <div class="col-lg-10 dir-rtl col-md-10 col-10 col-sm-10 text-info-simulators text-right wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
-                        <span>בעת לחיצה ובחירה בנושא מסוים – המערכת תייצר במיוחד עבורך מבחן תרגול מתאים</span>
+                        <span>בחרתם מבחן? מצוין! הגיע זמן לראות מה אתם שווים</span>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 number-info wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
                         <span>4</span>
                     </div>
                     <div class="col-lg-10 dir-rtl col-md-10 col-10 col-sm-10 text-info-simulators text-right wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
-                        <span>השימוש במערכת הלומדות בחינם ועל אחריותו של המשתמש בלבד המשתמש במערכת מצהיר כי הוא פוטר את מפעילי האתר מכל אחריות ישירה או עקיפה לתכנים הנמצאים במערכת</span>
+                        <span>אפשרויות פרסום באתר, לבעלי עסקים גדולים וקטנים כאחד, עם חשיפה לאלפי לקוחות</span>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-2 number-info wow fadeInRight" data-wow-duration="1" data-wow-delay="1"">
                         <span>5</span>
@@ -158,7 +143,6 @@
         </section>
         <!--end of section-four-->
 
-    </div>
   <!--end of container-main-page-->
 
 <?php include 'footer.php';?>

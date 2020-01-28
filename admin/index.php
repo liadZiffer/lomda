@@ -37,7 +37,7 @@ if (!isset($_SESSION['iduser']) || $_SESSION['iduserType'] != 1) {
                 <div  class="container">
                     <div class="row">
                         <div class="col">
-                            <div class="section_title_container text-center" dir="rtl">
+                            <div class="section_title_container text-center dir-rtl">
                                 <h2 class="section_title">שלום <?php echo $_SESSION['fullname'] ?></h2>                            
                             </div>
                         </div>

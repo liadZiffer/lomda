@@ -19,3 +19,71 @@
     color: #e74c3c;
   }
   
+
+  
+.radio-btns {
+  input[type=radio] {
+      border: 0;
+      clip: rect(0 0 0 0);
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      & + label:before {
+          border: 2px solid currentColor;
+          content: '';
+          appearance: none;
+          margin: 0 0 0 -30px;
+          width: 20px;
+          height: 20px;
+          border-radius: 20px;
+          transition: .2s;
+          cursor: pointer;
+          color: currentColor;
+          position: absolute;
+          top: 3px
+      }
+
+      &:hover,
+      &:focus,
+      &:checked {
+          & + label:before {
+              background: orange;
+              box-shadow:
+                      inset 0 0 0 7px white,
+                      0 0 0 0;
+          }
+      }
+
+      &:checked {
+          & + label:before {
+              background: orange;
+              box-shadow:
+                      inset 0 0 0 3px white,
+                      0 0 0 0;
+          }
+      }
+
+      & + label {
+          cursor: pointer;
+          display: inline-block;
+          font-size: 1.8rem;
+          position: relative;
+          padding-left: 30px;
+          margin: 5px 35px 5px 0;
+          line-height: normal;
+      }
+
+      &:disabled + label {
+          cursor: default;
+          opacity: .55;
+          &:before {
+              background: none;
+              box-shadow: none;
+              cursor: default;
+          }
+      }
+  }
+}

@@ -13,6 +13,9 @@ Bootstrap 4 breakpoints
 Extra small devices (portrait phones, less than 576px) 
 No media query since this is the default in Bootstrap because it is "mobile first"
 */
+@media (max-width: 1550px) {
+
+}
 @media (max-width: 1368px) {
     .btn-register-wrap {
         padding-left: 0;
@@ -32,6 +35,7 @@ No media query since this is the default in Bootstrap because it is "mobile firs
     }
     .footer_wrap {
         padding-bottom: 5px;
+        padding: 20px 0;
     }
     .section-one-title h1 {
         font-size: 57pt;
@@ -42,129 +46,77 @@ No media query since this is the default in Bootstrap because it is "mobile firs
     .section-one-title {
         margin-bottom: 15px;
     }
-    .nav-link {
+    /* .nav-link {
         font-size: 14pt;
-    }
-    .cta-register{
+    } */
+    .cta-register {
         padding-left: 0;
+        margin-top: 0;
+        padding-bottom: 10%;
     }
     .section-one-subtitle {
         text-align: center;
         margin-bottom: 75px;
     }
-    
-    
-}
-@media (max-width: 480px) {  
-    .section-one-title h1 {
-        font-size: 40pt;
-        margin-bottom: 0;
+    a.logo-wrapper img {
+        max-width: 90%;
     }
-    .section-one-title {
-        padding-top: 10%;
+    .modal-dialog {
+        max-width: 400px;
+        margin: 30px auto;
     }
-    .section-one-title {
-        margin-bottom: 0;
+    .questions-number {
+        padding: 5px 9px;
     }
-    .section-one-subtitle h3 {
-        font-size: 14pt;
+    #mainNav .navbar-nav .nav-item .nav-link {
+        font-size: 16px;
+        
     }
-    .ul-register-login {
-        justify-content: center!important;
-        margin-left: auto!important;
-        margin-bottom: 0;
+    #mainNav {
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
-    a.navbar-brand {
-        text-align: left;
-        padding-right: 0;
-        padding-top: 1%;
-        padding-left: 1%;
-        position: fixed;
-        top: 0;
-    }
-    .btn-register-wrap li.list-inline-item.white-color {
-        font-size: 15px;
-    }
-    .fixed-top {
-        padding: 0;
-    }
-    .btn-register-wrap {
-        z-index: 0;
-    }
-    div#simulators-navbar {
-        background: #fff;
-        padding: 0;
-        max-width: 800px;
-        overflow: hidden;
-        position: relative;
-        z-index: 1050;
-        top: 50px;
-    }
-    .nav-link {
-        color: #7e7e7e!important;
-        text-align: center;
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 0px;
-        border-radius: 0px;
-        margin-left: 0;
-    }
-    .nav-link:before {
-        content : "";
-        position: absolute;
-        left: 25%;
-        bottom  : 0;
-        height  : 1px;
-        width   : 50%;  /* or 100px */
-        border-bottom:1px solid #e6e6e6;
-      }
-      .cta-register-btn {
-        width: 50%;
-        padding: 0;
+    .casual-summary-points {
         font-size: 25px;
     }
-    .section-one-subtitle {
-        margin-bottom: 80px;
+    .casual-summary-points h3 {
+        font-size: 23px;
     }
-    .section-two-title h2 {
-        font-size: 13pt;
+    .total-info p {
+        font-size: 24px;
     }
-        
-    #section-two .container {
-        margin-top: 30px;
+    .casual-register {
+        font-size: 23px;
     }
-    .section-two-title {
-        margin-bottom: 0;
+    .result-success-casual img {
+        width: 28%;
     }
-    .inner-icon p {
-        margin-bottom: 0;
+    h3.total-answers-casual {
+        font-size: 26px;
+        line-height: 33px;
     }
-    .inner-icon img {
-        padding-top: 40px;
+    .text-center.main-menu-adv {
+        margin-top: 25px;
     }
-    .text-info-simulators {
-        font-size: 1rem;
+    .adv-main-wrap-btns {
+        margin: 30px 0;
     }
-    #section-three .number-info {
-        font-size: 3rem;
-        padding-top: 0;
+    .main-menu-adv-title {
+        font-size: 43px;
+        line-height: 50px;
     }
-    #button-to-top::after {
-        line-height: 35px;
-    }
-    #button-to-top {
-        width: 35px;
-        height: 35px;
-        right: 20px;
+    .section_title h2 {
+        font-size: 38px;
+        line-height: 52px;
     }
 
-}
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {  
-    .btn-register-wrap ul {
-        float: right;
-    }
+
 }
 
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) { 
+
+}
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (max-width: 768px) {  
     .text-number-wrap{
@@ -194,21 +146,358 @@ No media query since this is the default in Bootstrap because it is "mobile firs
     .copyright_wrap {
         font-size: 12px;
     }
-    .nav-item {
+    /* .nav-item {
         padding-left: 0;
-    }
-    a.navbar-brand {
+    } */
+    /* a.navbar-brand {
         position: absolute;
+    } */
+    /* a.navbar-brand {
+        position: absolute;
+        right: 0;
+        padding-top: 0.5%;
+    } */
+    /* .nav-link {
+        font-size: 16px;
+        padding-top: 0;
+        line-height: 19px;
+        padding: 5px 0;
+    } */
+    /* div#simulators-navbar {
+        padding-top: 0.5%;
+    } */
+    .hello-user p {
+        font-size: 18px;
+        margin-bottom: 0;
+        line-height: 23px;
     }
-    .section-two-title h2 {
+    .footer-logo-wrap img {
+        max-width: 15%;
+    }
+    /* #subjects .section-one-nav-bar {
+        padding-top: 7%;
+    } */
+    /* .nav-link {
+        -moz-border-radius: 20px;
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+    } */
+    .nav-link:before {
+        content: "";
+        position: absolute;
+        left: 33%;
+        bottom: 0;
+        height: 1px;
+        width: 35%;
+        border-bottom: 1px solid #696767;
+    }
+    .correct-ans-sum, .wrong-ans-sum {
+        text-align: center;
         margin-bottom: 0;
     }
+    .questions-inner-wrap h3 {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 0;
+        margin-bottom: 10px;
+    }
+    .approve-question, .next-question, .back-to-question{
+        width: 90px;
+        height: 35px;
+        font-size: 16px;
+        line-height: 23px;
+        font-size: 15px;
+        padding-top: 0;
+        margin-right: 5px;
+    }
+    .approve-question{
+        margin:0 auto;
+    }
+    li.list-group-item.questions-number{
+        margin-bottom: 5px;
+    }
+    .choice-answer {
+        font-size: 17px;
+        line-height: 29px;
+    }
+    .correct-question {
+        color: #006738;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        background: #12803f;
+        color: #fff;
+        font-size: 15px;
+        line-height: 23px;
+        border: 5px solid #3AB448;
+        width: 35%;
+        /* position: absolute; */
+        margin: 0 auto;
+    }
+    .hello-user{
+        padding-left: 5px;
+    }
+    .result-success-casual img {
+        width: auto;
+    }
+    .navbar-nav li:first-child {
+        order: 4;
+      }
+      .navbar-nav li:nth-child(2) {
+        order: 3;
+      }
+      .navbar-nav li:nth-child(3) {
+        order: 2;
+      }
+      .navbar-nav li:nth-child(4) {
+        order: 1;
+      }
+      .main-menu-adv-title {
+        font-size: 30px;
+        line-height: 37px;
+    }
+    .section_title h2 {
+        font-size: 23px;
+        line-height: 30px;
+    }
+    #advertiser-main .cta-register-btn {
+        font-size: 15px;
+        line-height: 23px;
+        width: 100%;
+    }
+    .main-add-adv-wrap{
+        padding:0;
+    }
+    #advertising-main-add .cta-register-btn ,#advertiser-main-route .cta-register-btn {
+        width: 100%;
+        padding: 5px;
+        font-size: 15px;
+        line-height: 23px;
+      }
+      #advertising-main-add .submit-btn .btn-primary {
+        width: 100%;
+    }
+    .col, .col-12 {
+        padding: 0;
+    }
+    #advertiser-main .submit-btn .btn-primary {
+        width: 100%;
+    }
+    .submit-btn{
+        margin-bottom: 15px;
+    }
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+    .btn-register-wrap ul {
+        float: right;
+    }
 }
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
+
+@media (max-width: 480px) {
+    section {
+        padding: 35px 0;
+    }
+    .section-one-title h1 {
+        font-size: 40pt;
+        margin-bottom: 0;
+    }
+    .section-one-title {
+        margin-bottom: 15px;
+        margin-top: 150px;
+        padding-top: 0;
+    }
+    .section-one-subtitle h3 {
+        font-size: 27px;
+        line-height: 34px;
+    }
+    header.masthead .intro-text {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .ul-register-login {
+        justify-content: center!important;
+        margin-left: auto!important;
+        margin-bottom: 0;
+    }
+    .btn-register-wrap li.list-inline-item.white-color {
+        font-size: 15px;
+    }
+    #subjects .fixed-top {
+        padding: 0;
+        position: absolute;
+    }
+    .btn-register-wrap {
+        z-index: 0;
+        order: 2;
+    }
+    /* .section-one-nav-bar {
+        order: 3;
+    } */
+    a.logo-wrapper {
+        z-index: 99999;
+        order: 1;
+        position: relative;
+        text-align: left;
+    }
+    a.logo-wrapper img {
+        max-width: 55%;
+    }
+    div#navbarResponsive {
+        order: 4;
+        background: #212121;
+        opacity: 0.8;
+        margin: 0 5%;
+    }
+      a.logo-wrapper {
+        order: 1;
+      }
+      #mainNav .navbar-toggler {
+        order: 3;
+        z-index: 9999999;
+      }
+
+      #mainNav .navbar-nav .nav-item .nav-link {
+        font-weight: 400;
+        border-width: 0;
+        border-style: solid;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0;
+        font-size: 15pt;
+        font-weight: 600;
+        position: relative;
+    }
+      li.list-inline-item.white-color {
+        font-size: 15px;
+      }
+      ul.row.ul-register-login {
+        order: 2;
+        padding-left: 0;
+    }
+    .nav-link {
+        border: 0;
+        text-align: center;
+        font-size: 15px;
+        line-height: 22px;
+    } 
+    .cta-register-btn {
+        width: 50%;
+        padding: 0;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .cta-register-btn {
+        width: 75%;
+        padding: 5px;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .cta-register {
+        padding-left: 0;
+        margin-top: 0;
+        position: absolute;
+        bottom: 2%;
+        left: 0;
+        right: 0;
+        /* text-align: center; */
+    }
+    .section-two-title h2 {
+        font-size: 13pt;
+    }
+        
+    #section-two .container {
+        margin-top: 0;
+    }
+    .section-two-title {
+        margin-bottom: 0;
+    }
+    .section-two-title h2 {
+        font-size: 19pt;
+    }
+    #mainNav {
+        padding-left: 0;
+        padding-top: 5px;
+        padding-right: 0;
+    }
+    .navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
+        margin: 0 auto;
+        padding-left: 0;
+    }
+    .inner-icon p {
+        margin-bottom: 0;
+    }
+    .inner-icon img {
+        padding-top: 40px;
+    }
+    .text-info-simulators {
+        font-size: 1rem;
+    }
+    #section-three .number-info {
+        font-size: 3rem;
+        padding-top: 0;
+    }
+    #button-to-top::after {
+        line-height: 35px;
+    }
+    #button-to-top {
+        width: 35px;
+        height: 35px;
+        right: 20px;
+    }
+    #subjects a.navbar-brand {
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+    header.masthead {
+        background-image: url(../images/site-images/mobile-bg.png);
+    background-size: 100%; 
+    background-size: cover;
+    background-attachment: fixed;
+    padding-bottom: 0;
+    width: 100%;
+    height: 100vh;
+}
+.masthead cta-register {
+    position: absolute;
+    bottom: 2%;
+}
+    .navbar-brand img {
+        max-width: 17%;
+        height: auto;
+    }
+    .modal.show .modal-dialog {
+        -webkit-transform: translate(0,0);
+        transform: translate(0,0);
+        width: 70%;
+        animation-duration: 0.5s;
+    }
+    /* a.logo-wrapper {
+        position: absolute;
+        left: 0;
+        z-index: 99999;
+    } */
+    #subjects #mainNav {
+        background-color: #212121;
+    }
+    h3.total-answers-casual {
+        font-size: 22px;
+        line-height: 29px;
+    }
+
+
+
 
 }
+
+
+
+
+
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {  

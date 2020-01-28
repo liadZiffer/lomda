@@ -1,5 +1,6 @@
 <?php
 session_start();
+// var_dump($_SESSION['iduserType']);
 include_once './DB/dbconnect.php';
 $db = new dbconnect();
 if (!isset($_SESSION['iduserType'])) {
@@ -19,11 +20,12 @@ if ($_SESSION['subject'] != $_GET['subject']) {
 $idSubjectQuestion = $_SESSION['subject'];
 //get the idcity by iduser
 $userIdCity = $db->GetUserCityByUserId($_SESSION['iduser'])['idcity'];
-
 if (!isset($_SESSION['gameQuashtion'])) {
     $_SESSION['gameQuashtion'] = array();
     if($_SESSION['iduserType'] == 2){//unregistered user show only 5 questions
+
         $result = $db->GetQuestionsBySubjectQuestionsIdAndQnty($_GET['subject'], 25);
+
     }
     else{
         $result = $db->GetQuestionsBySubjectQuestionsIdAndQnty($_GET['subject'], 5);
@@ -53,65 +55,69 @@ if (isset($_POST['submit'])) {
 }
 //if its casual user redirect to different sum page info than register user
 if (sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) && $_SESSION['iduserType'] == 2) {
-    $db->Redirect("casualEndTest.php");
+    $db->Redirect("score.php");
 }
 else if ( sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) ){
-    $db->Redirect("score.php");
+    
+    $db->Redirect("casualEndTest.php");
 }
 ?>
 <?php include 'header.php';?>
 
             <!-- Menu -->
-        <section id="questions-main">
-            <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
-                <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
-                <nav class="menu_nav">
-                    <ul class="menu_mm">
-                        <li class="menu_mm"><a href="subjects.php">בית</a></li>
+        <div id="questions-main">
+        <div class="navbar-wrap navbar-black">
+                <?php include 'navbar.php';?>
+            </div>
+            <div class="questions-list-wrap">
+                <ul class=" row list-group list-group-horizontal list-inline mx-auto justify-content-center">
                         <?php
                         $corret = 0;
                         $wrong = 0;
                         for ($index = 0; $index < sizeof($_SESSION['gameQuashtion']); $index++) {
                             ?>
-                            <li><a style="
+                            <li class="list-group-item questions-number font-weight-bold" style="
                                 <?php
                                 if (isset($_SESSION['Answers'][$_SESSION['gameQuashtion'][$index]])) {
                                     if ($_SESSION['Answers'][$_SESSION['gameQuashtion'][$index]]) {
                                         $corret++;
                                         ?>
-                                           color: green;
+                                            background-color: #006738;
+                                           color:#fff;
                                            <?php
                                        } else {
                                            $wrong++;
                                            ?>
-                                           color: red;
+                                            background-color: #be1e2d;
+                                           color:#fff;
+                                           border:3px solid #ed1c24!important;
                                        <?php }
                                        ?>
 
                                    <?php } ?>
 
-                                   " href="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_SESSION['gameQuashtion'][$index] ?>"><?php echo $index + 1 ?></a></li>    
+                                   <a href="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_SESSION['gameQuashtion'][$index] ?> > <?php echo $index + 1 ?></a>
+                                   </li>    
                             <?php } ?>
-                        <li><a href="login.php"> התנתק</a></li>
-                    </ul>
 
-                </nav>
+                    </ul>
             </div>
 
 
 
             <div  class="courses">
-                <div  class="section_background parallax-window" data-parallax="scroll" data-image-src="templateImages//courses_background.jpg" data-speed="0.8"></div>
-                <br><br><br><br><br>
-                <div  class="container">
+                <div  class="container-fluid">
                     <div class="row">
-                        <div class="col">
 
-                            <div class="col-sm-12 text-left "dir="rtl"> 
-                                <h3 style="font-family: 'Heebo', sans-serif;"><?php echo $corret ?>/<?php echo sizeof($_SESSION['gameQuashtion']) ?> נכונות</h3>
-                                <h3 style="font-family: 'Heebo', sans-serif;"><?php echo $wrong ?>/<?php echo sizeof($_SESSION['gameQuashtion']) ?> שגויות</h3>
-                                <center>
+                            <div class="col-sm-12 text-left assitant-extra-bold questions-score-wrap"dir="rtl"> 
+                                <h3 class="correct-ans-sum"><?php echo $corret ?>/<?php echo sizeof($_SESSION['gameQuashtion']) ?> נכונות</h3>
+                                <h3 class="wrong-ans-sum"><?php echo $wrong ?>/<?php echo sizeof($_SESSION['gameQuashtion']) ?> שגויות</h3>
 
+                                </div>
+                    </div>
+                </div>
+                <!-- end worng-correct wrap-->
+                <div class="container text-center dir-rtl questions-inner-wrap relative">
 
                                     <?php
                                     if (isset($_GET['Quashtions'])) {
@@ -121,69 +127,69 @@ else if ( sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) ){
                                     if (!isset($_SESSION['Answers'][$_GET['Quashtions']])) {
                                         ?>
                                         <form action="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_GET['Quashtions'] ?>" method="POST">
-                                            <h3 style="font-family: 'Heebo', sans-serif;"><?php echo $Question['Question']; ?></h3><br><?php
+                                            <h3 class="font-weight-bold"><?php echo $Question['Question']; ?></h3><?php
                                     if (!empty($Question['QuestionImage'])) {
                                             ?>
-                                                <br><img height="200" width="200" alt="photo" src="<?php echo str_replace("../", "", $Question['QuestionImage']); ?>"><br>
+                                               <img height="200" width="200" alt="photo" src="<?php echo str_replace("../", "", $Question['QuestionImage']); ?>"><br>
 
                                             <?php }
                                             ?>
-                                            <table style="color: black;text-align: right;">
-                                                <tr>
-
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
+                                            <table class="text-right display-questions-wrap">
                                                 <?php
                                                 $numbers = range(1, 4);
                                                 shuffle($numbers);
                                                 for ($index1 = 0; $index1 < 4; $index1++) {
                                                     ?>
                                                     <tr>
-                                                        <td> <input <?php if (isset($_SESSION['Answers'][$_GET['Quashtions']])) { ?>  disabled <?php } ?> style="height: 15px;width: 15px" type="radio" name="answer" value="<?php echo $numbers[$index1]; ?>"></td>
-                                                        <td style="font-size: 20px;font-family: 'Heebo', sans-serif;"><?php echo " " . $Question['Answer' . $numbers[$index1]] ?></td>
+                                                        <td class="radio-btn-answer"> <input <?php if (isset($_SESSION['Answers'][$_GET['Quashtions']])) { ?>  disabled <?php } ?>  type="radio" name="answer" value="<?php echo $numbers[$index1]; ?>"><label for="answer"></label>
+                                                            <!-- <div class="check"><div class="inside"></div></div> -->
+                                                        </td>
+                                                        <td class="choice-answer font-weight-bold"><?php echo " " . $Question['Answer' . $numbers[$index1]] ?></td>
                                                         <td><?php
                                             if (!empty($Question['AnswerImage' . $numbers[$index1]])) {
                                                         ?><img src="<?php echo $Question['AnswerImage' . $numbers[$index1]] ?>" height="200" width="200">  <?php } ?></td>
                                                     </tr>
                                                 <?php } ?>
-                                                <tr>
-                                                    <td></td>
-                                                    <td> <p style="color: red"><?php echo $error ?></p></td>
-                                                </tr>
+                                                        <p class="font-weight-bold" style="color: red"><?php echo $error ?></p>
+
                                             </table>
+                                           <div class="container">
 
-                                            <br>
+                                                <div class="row approve-question-wrap">
+                                                        <input class="approve-question" <?php if (isset($_SESSION['Answers'][$_GET['Quashtions']])) { ?>  disabled<?php } ?> type="submit" name="submit" value="אשר תשובה">
+                                                        <?php if (array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) != sizeof($_SESSION['gameQuashtion']) - 1) { ?><a class="next-question" href="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_SESSION['gameQuashtion'][array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) + 1] ?>">שאלה הבאה</a><?php } ?>
 
-
-
-                                            <input <?php if (isset($_SESSION['Answers'][$_GET['Quashtions']])) { ?>  disabled<?php } ?> type="submit" name="submit" value="אשר תשובה"> <br>
+                                                        <?php if (array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) != 0) { ?><a class="back-to-question"  href="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_SESSION['gameQuashtion'][array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) - 1] ?>">דלג</a><?php } ?>
+                                                </div>
+                                            </div>    
                                         </form>
                                         <?php
                                     }
                                     if (isset($_SESSION['Answers'][$_GET['Quashtions']])) {
                                         if ($_SESSION['Answers'][$_GET['Quashtions']]) {
                                             ?>
-                                            <h2 style="color: green">תשובה נכונה</h2>
+                                            <h2 class="correct-question">תשובה נכונה</h2>
                                             <?php
                                         } else {
                                             ?>
-                                            <h2 style="color: red">תשובה שגויה</h2> 
+                                            <h2 class="error-question">תשובה שגויה</h2> 
                                         <?php } ?>
                                         <h3><?php echo $Question['Question']; ?></h3>
-                                        <p style="color: black;font-size: 20px;font-family: 'Heebo', sans-serif;">פיתרון: <?php echo$Question['Answer' . $Question['CorrectAnswer']] ?></p>
-                                        <p style="color: black;font-size: 20px;font-family: 'Heebo', sans-serif;">הסבר: <?php echo $Question['explanation'] ?></p>
+                                        <p>פיתרון: <?php echo$Question['Answer' . $Question['CorrectAnswer']] ?></p>
+                                        <p>הסבר: <?php echo $Question['explanation'] ?></p>
+                                        <?php if (array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) != sizeof($_SESSION['gameQuashtion']) - 1) { ?><a class="next-question" href="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_SESSION['gameQuashtion'][array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) + 1] ?>">שאלה הבאה</a><?php } ?>
+
+<?php if (array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) != 0) { ?><a class="back-to-question"  href="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_SESSION['gameQuashtion'][array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) - 1] ?>">אחורה</a><?php } ?>
                                         <?php
                                     }
                                     ?>
-                                    <br>
-                                    <?php if (array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) != 0) { ?><a style="font-size: 20px" href="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_SESSION['gameQuashtion'][array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) - 1] ?>">אחורה</a><?php } ?>&nbsp&nbsp&nbsp&nbsp&nbsp<?php if (array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) != sizeof($_SESSION['gameQuashtion']) - 1) { ?><a style="font-size: 20px;" href="Quashtions.php?subject=<?php echo $_GET['subject'] ?>&Quashtions=<?php echo $_SESSION['gameQuashtion'][array_search($_GET['Quashtions'], $_SESSION['gameQuashtion']) + 1] ?>">שאלה הבאה</a><?php } ?>
-                                </center>
+
+                                    
+                            </div>
                             </div>
                         </div>
                     </div>
-                    <br><br><br>
-                </div>
+
 
 
             </div>
@@ -192,13 +198,10 @@ else if ( sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) ){
 
             <div class="container btmAdvertise">
 
-
-                <div class="row">
-
-                    <div class="col-sm-8 main_adv">
-                        <div class="adv-title">
-                            <h2><a href="ourPartners.php?subject=<?php echo $_SESSION['subject']; ?>">השותפים שלנו</a></h2>
+            <div class="adv-title row text-center">
+                            <h2 class="our-ptns text-center font-weight-bold"><a href="ourPartners.php?subject=<?php echo $_SESSION['subject']; ?>">השותפים שלנו</a></h2>
                         </div>
+                    <div class="row main_adv">
                         <?php
                 //get relevant ads by user id city
                 $relevantAdsByCity = $db->getAdvertismentDetailsByIdCity($userIdCity,$idSubjectQuestion);
@@ -207,20 +210,19 @@ else if ( sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) ){
                 if($relevantAdsByCity && mysqli_num_rows($relevantAdsByCity)){
                     
                     while ($row = mysqli_fetch_array($relevantAdsByCity)) {?>
-                                                 <div class="business-info">
-                        <p class="businessName">
-                            <span>++++++++</span>
-                            <?php echo $row['businessName'] ?>
-                        </p>
-                        <p class="advertisingName"><?php echo $row['advertisingName'] ?></p>
-                        <p class="slogen"><?php echo $row['slogen'] ?></p>
-                        <p class="businessEmail"><?php echo $row['businessEmail'] ?></p>
-                        <p class="file_name">
-                            <img src="<?php echo $row['file_name']?>" >
-                        </p>
-                       
+                        <div class="business-info col-lg-3">
+                            <p class="businessName font-weight-bold">
+                                <?php echo $row['businessName'] ?>
+                            </p>
+                            <p class="advertisingName"><?php echo $row['advertisingName'] ?></p>
+                            <p class="slogen"><?php echo $row['slogen'] ?></p>
+                            <p class="businessEmail"><?php echo $row['businessEmail'] ?></p>
+                            <p class="file_name">
+                                <img src="<?php echo $row['file_name']?>" >
+                            </p>
+                        
 
-                    </div>  
+                        </div>  
 
                           <?php  } 
  
@@ -234,24 +236,4 @@ else if ( sizeof($_SESSION['gameQuashtion']) == sizeof($_SESSION['Answers']) ){
                     
 
                 </div>
-            </div>
-        </section><!-- END QUESTIONS SECTION -->
-
-
-        </div>
-
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="styles/bootstrap4/popper.js"></script>
-        <script src="styles/bootstrap4/bootstrap.min.js"></script>
-        <script src="plugins/greensock/TweenMax.min.js"></script>
-        <script src="plugins/greensock/TimelineMax.min.js"></script>
-        <script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-        <script src="plugins/greensock/animation.gsap.min.js"></script>
-        <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-        <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-        <script src="plugins/easing/easing.js"></script>
-        <script src="plugins/parallax-js-master/parallax.min.js"></script>
-        <script src="plugins/colorbox/jquery.colorbox-min.js"></script>
-        <script src="js/about.js"></script>
-    </body>
-</html>
+                <?php include 'footer.php';?>
